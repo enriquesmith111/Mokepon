@@ -183,7 +183,7 @@ AI_nextMenuButton.addEventListener('click', () => {
 // Turn-based logic data
 let attack = null;
 let isPlayerTurn = true;
-let playerHP = 1;
+let playerHP = 100;
 let ai_HP = 100;
 
 

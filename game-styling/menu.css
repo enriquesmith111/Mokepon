@@ -1,0 +1,187 @@
+/* fist menu with game mode buttons and info for geeks button */
+.menu {
+    display: flex;
+    /* toggle display flex to none and back on and off when selecting through menus */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 300px;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    border-radius: 2%;
+}
+
+/* buttons inside first menu */
+
+.menu-button {
+    width: 80%;
+    transition: transform 0.1s ease-in-out;
+}
+
+.menu-button:hover {
+    background-color: rgb(187, 186, 186);
+}
+
+.menu-button:active {
+    transform: scale(0.9);
+}
+
+/* second menu with mokepon selection, back and next buttons */
+
+.second-menu {
+    display: flex;
+    display: none;  /* toggle this on and off when selecting through menus */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 300px;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    border-radius: 2%;
+}
+
+/* mokepon type texts */
+
+.electric-text {
+    margin-top: -25px;
+    border: solid yellow 2px;
+    background-color: rgba(255, 255, 0, 0.514);
+}
+
+.water-text {
+    margin-top: -25px;
+    border: solid darkturquoise 2px;
+    background-color: rgb(0, 187, 190);
+} 
+
+.grass-text {
+    margin-top: -25px;
+    border: solid green 2px;
+    background-color: rgba(0, 128, 0, 0.692);
+} 
+
+.fire-text {
+    margin-top: -25px;
+    border: solid red 2px;
+    background-color: rgba(255, 0, 0, 0.703);
+} 
+
+/* actual mokepon selection buttons */
+
+.mokepon-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mokepon-selection-button {
+    width: 120px;
+    height: 160px;
+    background-color: bisque;
+    transition: transform 0.2s ease-in-out;
+}
+
+.mokepon-selection-button:hover {
+    background-color: rgb(255, 200, 133);
+}
+
+.mokepon-selection-button:active {
+    transform: scale(0.5);
+}
+
+.clicked {
+    background-color: rgb(255, 175, 77);
+    color: white;
+}
+
+/* next and back buttons */
+
+.next-and-back-btn {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.next-menu-button {
+    width: 70%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.next-menu-button:hover {
+    background-color: rgb(187, 186, 186);
+}
+
+.next-menu-button:active {
+    transform: scale(0.9);
+}
+
+.back-menu-button {
+    width: 30%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.back-menu-button:hover {
+    background-color: rgb(187, 186, 186);
+}
+
+.back-menu-button:active {
+    transform: scale(0.9);
+}
+
+
+/* pixel art borders for the buttons from  */
+/* https://pixelcorners.lukeb.co.uk/?radius=8&multiplier=4&border=1&border_width=1&border_color=#000000 */
+
+
+.pixel-corners,
+.pixel-corners--wrapper {
+    clip-path: polygon(0px calc(100% - 20px),
+    4px calc(100% - 20px),
+    4px calc(100% - 12px),
+    8px calc(100% - 12px),
+    8px calc(100% - 8px),
+    12px calc(100% - 8px),
+    12px calc(100% - 4px),
+    20px calc(100% - 4px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 4px) 20px,
+    calc(100% - 4px) 12px,
+    calc(100% - 8px) 12px,
+    calc(100% - 8px) 8px,
+    calc(100% - 12px) 8px,
+    calc(100% - 12px) 4px,
+    calc(100% - 20px) 4px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 4px,
+    12px 4px,
+    12px 8px,
+    8px 8px,
+    8px 12px,
+    4px 12px,
+    4px 20px,
+    0px 20px);
+    position: relative;
+}

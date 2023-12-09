@@ -1,0 +1,62 @@
+.you-status {
+    z-index: 1;
+    /* toggle display flex to none and back on and off when selecting through menus */
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 10%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+    height: 80px;
+    width: 400px;
+    flex-direction: row;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    border-radius: 2%;
+}
+
+.you-status.fade-in {
+    opacity: 1; /* Make visible */
+}
+
+.you-status-hp {
+    display: flex;
+    flex-direction: row;
+} h1 {
+    color: rgb(184, 0, 0);
+}
+
+
+
+.oponent-status {
+    z-index: 1;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 10%;
+    left: 77%;
+    transform: translate(-50%, -50%);
+    height: 80px;
+    width: 400px;
+    flex-direction: row;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    border-radius: 2%;
+}
+
+.oponent-status.fade-in {
+    opacity: 1; /* Make visible */
+}
+
+.oponent-status-hp {
+    display: flex;
+    flex-direction: row;
+}

@@ -1,0 +1,67 @@
+.sprite-images-and-components {
+    z-index: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    height: 600px;
+    width: 1000px;
+}
+
+.you {
+    /* toggle display flex to none and back on and off when selecting through menus */
+    display: none;
+    position: absolute;
+    top: 75%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    scale: 4;
+    animation: slide-in-left 1s ease-in-out;
+    animation: attack-right 0.3  reverse 2 direction fill-mode;
+}   
+
+@keyframes slide-in-left {
+    from {
+        left: 20%;
+        opacity: 0;
+    }
+    to {
+        left: 40%;
+        opacity: 1;
+    }
+}
+
+@keyframes attack-right {
+    from {
+        left: 40%; 
+    } 50% {
+        left: 80%; 
+    }
+}
+
+
+.oponent {
+     /* toggle display flex to none and back on and off when selecting through menus */
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    scale: 3;
+    animation: slide-in-right 1s ease-in-out;
+}
+
+@keyframes slide-in-right {
+    from {
+        left: 100%;
+        opacity: 0;
+    }
+    to {
+        left: 80%;
+        opacity: 1;
+    }
+}
+

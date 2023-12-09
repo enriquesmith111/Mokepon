@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/game-styling/background.css">
+    <link rel="stylesheet" href="/game-styling/sprite-position.css">
+    <link rel="stylesheet" href="/game-styling/menu.css">
+    <link rel="stylesheet" href="/game-styling/pixel-corners.css">
+    <link rel="stylesheet" href="/game-styling/mokepon-stats.css">
+    <link rel="stylesheet" href="/game-styling/bottom-info.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans+Condensed:ital,wght@1,300;1,500&family=Fjalla+One&family=Francois+One&family=Jost:ital@1&family=Oswald:wght@300&family=Pixelify+Sans&family=Volkhov&display=swap" rel="stylesheet">
+</head>
+
+<!-- Images for both sprites, background image and components inside game window -->
+
+<body>
+    <div class="sprite-images-and-components">
+
+        <!-- your pokemon stats -->
+
+        <div class="you-status pixel-corners">
+            <h2>Mokepon</h2>
+            <div class="you-status-hp">
+                <h1>HP</h1>
+                <h3>100</h3>
+            </div>
+        </div>
+
+        <!-- oponent pokemon stats -->
+
+        <div class="oponent-status pixel-corners">
+            <h2>Mokepon</h2>
+            <div class="oponent-status-hp">
+                <h1>HP</h1>
+                <h3>100</h3>
+            </div>
+        </div>
+
+        <div class="bottom-info pixel-corners">
+            <p class="context-info">this will be the text that will change with context</p>
+            <div class="four-attack-buttons">
+                <div class="two-attack-buttons">
+                    <button class="pixel-corners attack-btn"><h3>attack</h3></button>
+                    <button class="pixel-corners attack-btn"><h3>attack</h3></button>
+                </div>
+                <div class="two-attack-buttons">
+                    <button class="pixel-corners attack-btn"><h3>attack</h3></button>
+                    <button class="pixel-corners attack-btn"><h3>attack</h3></button>
+                </div>
+            </div>
+        </div>
+        <!-- sprites and background image -->
+    <img style="display: none;" src="components/sprites/beedrill.gif" class="">
+    <img style="display: none;" src="components/sprites/beedrill-back.gif" class="attack-right">
+    <img style="display: none;" src="components/sprites/bulbasaur.gif" class="">
+    <img style="display: none;" src="components/sprites/bulbasaur-back.gif" class="">
+    <img style="display: none;" src="components/sprites/caterpie.gif" class="">
+    <img style="display: none;" src="components/sprites/caterpie-back.gif" class="">
+    <img style="display: none;" src="components/sprites/charizard.gif" class="">
+    <img style="display: none;" src="components/sprites/charizard-back.gif" class="">
+    <img src="components/background/battle-background.png" class="game-background-image">
+</div>
+
+<!-- single player or multiplayer selection -->
+
+<div class="menu pixel-corners">
+    <h1>
+        Game Selection
+    </h1>
+    <button id="singleplayer-btn" class="menu-button pixel-corners">
+        <p>single player</p>
+    </button>
+    <button id="multiplayer-btn" class="menu-button pixel-corners">
+        <p>multiplayer</p>
+    </button>
+    <button class="menu-button pixel-corners">
+        <p>info for geeks</p>
+    </button>
+</div>
+
+<!-- Mokepon selection menu -->
+
+<div class="second-menu pixel-corners">
+    <div>
+        <h2 style="margin: 0 0 0 0;">
+            choose your Mokepon
+        </h2>
+    </div>
+    <div class="mokepon-selection">
+
+        <button id="beedrill-btn" class="mokepon-selection-button pixel-corners">
+            <p class="electric-text">electric</p>
+            <img style="scale: 2;" src="components/menu-sprites/menu-beedrill.png" alt="beedrill">
+        </button>
+
+        <button id="bulbasaur-btn" class="mokepon-selection-button pixel-corners">
+            <p class="water-text">water</p>
+            <img style="scale: 2;" src="components/menu-sprites/menu-bulbasaur.png" alt="bulbasaur">
+        </button>
+
+        <button id="caterpie-btn" class="mokepon-selection-button pixel-corners">
+            <p class="grass-text">grass</p>
+            <img style="scale: 2;" src="components/menu-sprites/menu-caterpie.png" alt="caterpie">
+        </button>
+
+        <button id="charizard-btn" class="mokepon-selection-button pixel-corners">
+            <p class="fire-text">fire</p>
+            <img style="scale: 2;" src="components/menu-sprites/menu-charizard.png" alt="charizard">
+        </button>
+
+    </div>
+    <div class="next-and-back-btn">
+        <button class="next-menu-button pixel-corners" style="height: 40px;">
+            Next
+        </button>
+        <button class="back-menu-button pixel-corners">
+            back
+        </button>
+    </div>
+</div>
+
+<script src="Menu.js"></script>
+<script src="Singleplayer.js"></script>
+</body>
+</html>
+
+

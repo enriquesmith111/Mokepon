@@ -1,0 +1,61 @@
+.bottom-info {
+    z-index: 1;
+    /* toggle display flex to none and back on and off when selecting through menus */
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 120px;
+    width: 100%;
+    flex-direction: row;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-around;
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    border-radius: 2%;
+}
+
+.bottom-info.fade-in {
+    opacity: 1; /* Make visible */
+}
+
+.context-info {
+    display: flex;
+    height: 120px;
+    width: 380px;
+    text-align: center;
+    margin-left: 85px;
+    margin-right: 85px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.four-attack-buttons {
+    height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+.two-attack-buttons {
+    height: 120px;
+    width: 220px;
+}
+
+.attack-btn {
+    width: 220px;
+    height: 60px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.attack-btn:hover {
+    background-color: rgb(192, 192, 192);
+}
+
+.attack-btn:active {
+    transform: scale(0.9);
+}

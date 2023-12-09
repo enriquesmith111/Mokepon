@@ -220,7 +220,6 @@ for (let i = 0; i < playerAttackButtons.length; i++) {
 
 // Execute attack selected by player
 function executePlayerAttack(attack) {
-    console.log('Function: executePlayerAttack')
     let opponentType = AI_selectedMokepon.type
     let damageMultiplier = calculateDamageMultiplier(attack, opponentType);
     let damage = attack.basePower * damageMultiplier;

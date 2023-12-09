@@ -35,7 +35,6 @@
 /* second menu with mokepon selection, back and next buttons */
 
 .second-menu {
-    display: flex;
     display: none;  /* toggle this on and off when selecting through menus */
     position: fixed;
     top: 50%;
@@ -137,6 +136,39 @@
 }
 
 .back-menu-button:active {
+    transform: scale(0.9);
+}
+
+.end-menu {
+    display: none;
+    /* toggle display flex to none and back on and off when selecting through end-menus */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 300px;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    border-radius: 2%;
+}
+
+/* buttons inside first end-menu */
+
+.end-menu-button {
+    width: 80%;
+    transition: transform 0.1s ease-in-out;
+}
+
+.end-menu-button:hover {
+    background-color: rgb(187, 186, 186);
+}
+
+.end-menu-button:active {
     transform: scale(0.9);
 }
 

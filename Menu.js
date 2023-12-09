@@ -9,6 +9,7 @@ const nextButton = document.querySelector('.next-menu-button');
 const youStatus = document.querySelector('.you-status');
 const oponentStatus = document.querySelector('.oponent-status');
 const bottomInfo = document.querySelector('.bottom-info');
+const reloadButton = document.getElementById('main-menu-btn');
 
 singlePlayerButton.addEventListener('click', () => {
     firstMenu.style.display = 'none';
@@ -20,6 +21,11 @@ backButton.addEventListener('click', () => {
     secondMenu.style.display = 'none';
     selectedButton.classList.remove('clicked')
 })
+
+reloadButton.addEventListener('click', () => {
+    window.location.reload();
+})
+
 
 // multiplayerButton.addEventListener('click', () => {
 //     console.log('button clicked');

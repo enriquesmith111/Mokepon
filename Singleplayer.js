@@ -101,7 +101,6 @@ mokeponButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const mokeponName = button.id.split('-')[0];
         selectedMokepon = mokepons[mokeponName];
-        console.log('Selected Mokepon:', selectedMokepon);
     });
 });
 
@@ -109,9 +108,7 @@ mokeponButtons.forEach((button) => {
 const nextMenuButton = document.querySelector('.next-menu-button');
 const contextInfoElement = document.querySelector('.context-info');
 nextMenuButton.addEventListener('click', () => {
-    const selectedImage = document.querySelector(
-        `img[src="${selectedMokepon.back_sprite}"]`
-    );
+    const selectedImage = document.querySelector(`img[src="${selectedMokepon.back_sprite}"]`);
     selectedImage.classList.add('you');
     selectedImage.style.display = 'flex';
     secondMenu.style.display = 'none';
@@ -186,7 +183,7 @@ AI_nextMenuButton.addEventListener('click', () => {
 // Turn-based logic data
 let attack = null;
 let isPlayerTurn = true;
-let playerHP = 100;
+let playerHP = 1;
 let ai_HP = 100;
 
 
@@ -225,9 +222,10 @@ function executePlayerAttack(attack) {
     let damage = attack.basePower * damageMultiplier;
     let damageRound = Math.floor(damage)
 
-    ai_HP -= damageRound; // Subtract Damage from AI health
+    ai_HP -= damageRound;
+    setTimeout(() => { checkGameOver(); }, 4000)
 
-    // show attack and damage information in context-info 
+    // Show attack and damage information in context-info 
     let newContextInfoText = `Your ${selectedMokepon.name} attacks with: ${attack.name}! it deals ${damageRound} points of damage to your oponents ${AI_selectedMokepon.name}!`;
     contextInfoElement.textContent = '';
     const characters = newContextInfoText.split('');
@@ -240,8 +238,10 @@ function executePlayerAttack(attack) {
 
     playerAnimation(); // animate attack
     setTimeout(updateHPDOMElement(ai_HP, 'oponent-status-hp')), 100;
-    isPlayerTurn = false;
+    isPlayerTurn = false; // Set isPlayerTurn to false
 }
+
+
 
 // Player Animations when attacking 
 function playerAnimation() {
@@ -270,8 +270,7 @@ function playerAnimation() {
 // AI GAME LOGIC ///////////////////////////////////////////////////
 // AI attack selection function
 function AIAttackSelection() {
-    console.log('Function AIAttackSelection');
-    if (!isPlayerTurn) {
+    if (!isPlayerTurn && (playerHP > 0 && ai_HP > 0)) {
         const AIAttacks = AI_selectedMokepon.attacks;
         let opponentType = selectedMokepon.type
         let randomIndex = Math.floor(Math.random() * AIAttacks.length);
@@ -286,8 +285,10 @@ function executeAIAttack(attack, opponentType) {
     let damageMultiplier = calculateDamageMultiplier(attack, opponentType);
     let damage = attack.basePower * damageMultiplier;
     let damageRound = Math.floor(damage)
-    // Update player HP
-    playerHP -= damageRound;
+
+    playerHP -= damageRound
+    setTimeout(() => { checkGameOver(); }, 4000)
+
 
     // show attack and damage information in context-info 
     let newContextInfoText = `Your oponents ${AI_selectedMokepon.name} attacks with: ${attack.name}! it deals ${damageRound} points of damage to your ${selectedMokepon.name}!`;
@@ -334,23 +335,16 @@ function ai_Animation() {
 // DAMAGE MULTIPLIER FUNCTION AND HP STATUS UNPDATE ////////////////////////////////////////
 // Damage multiplier calculator depending on attack type and against what mokepon it is used
 function calculateDamageMultiplier(attack, opponentType) {
-    console.log('Function: calculateDamageMultiplier');
 
     let basePower = attack.basePower; // Get the attack's base power
-    console.log(`Attack base power: ${basePower}`);
 
     let typeChartValue = typeChart[attack.type][opponentType]; // Get the damage multiplier value from the type chart
 
-    // Track the attacking Mokepon, the attack used, and the damage multiplier
-    console.log(`Attacker: ${attack.name}`);
-    console.log(`Damage multiplier: ${typeChartValue}`);
-
-    // Calculate actual damage
     const actualDamage = basePower * typeChartValue;
-    console.log(`Total damage: ${actualDamage}`);
 
     return typeChartValue;
 }
+
 
 
 
@@ -365,4 +359,34 @@ function updateHPDOMElement(currentHP, targetClassName) {
         playerDOMHP.textContent = (playerHP.toFixed(1)); // Update player HP with one decimal place
     }
 };
+
+function checkGameOver() {
+    if (playerHP <= 0) {
+        const endGameMenu = document.querySelector('.end-menu')
+        const endMenuTitle = document.querySelector('.end-menu-title')
+        const selectedImage = document.querySelector(`img[src="${selectedMokepon.back_sprite}"]`);
+
+
+        endGameMenu.style.display = 'flex'
+        endMenuTitle.textContent = 'You loose!'
+        selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
+        selectedImage.style.filter = "opacity(1)"
+
+
+    } else if (ai_HP <= 0) {
+        const endGameMenu = document.querySelector('.end-menu')
+        const endMenuTitle = document.querySelector('.end-menu-title')
+        const ai_selectedImage = document.querySelector(`img[src="components/sprites/${AI_selectedMokepon.name}.gif"]`);
+
+
+        endGameMenu.style.display = 'flex'
+        endMenuTitle.textContent = 'You Win!'
+        ai_selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
+        ai_selectedImage.style.filter = "opacity(1)"
+
+
+
+    }
+}
+
 

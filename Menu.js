@@ -1,4 +1,3 @@
-// second menu is shown when single player or multiplayer is shown
 "use strict";
 const singlePlayerButton = document.getElementById('singleplayer-btn');
 const multiplayerButton = document.getElementById('multiplayer-btn');
@@ -27,11 +26,12 @@ reloadButton.addEventListener('click', () => {
 })
 
 
-// multiplayerButton.addEventListener('click', () => {
-//     console.log('button clicked');
-//     firstMenu.style.display = 'none';
-//     secondMenu.style.display = 'flex';
-// });
+multiplayerButton.addEventListener('click', () => {
+    console.log('button clicked');
+    firstMenu.style.display = 'none';
+    secondMenu.style.display = 'flex';
+    multiplayer(); // Call the imported multiplayer function
+});
 
 // active state background color change for mokepon buttons
 

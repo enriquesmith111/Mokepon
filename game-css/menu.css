@@ -15,6 +15,11 @@
     background-color: blanchedalmond;
     border: solid black 2px;
     border-radius: 2%;
+}   @media screen and (max-height: 430px) {
+        .menu {
+            height: 350px;
+            width: 250px;
+        }
 }
 
 /* buttons inside first menu */
@@ -49,6 +54,11 @@
     background-color: blanchedalmond;
     border: solid black 2px;
     border-radius: 2%;
+}   @media screen and (max-height: 430px) {
+        .second-menu {
+            height: 350px;
+            width: 250px;
+        }
 }
 
 /* mokepon type texts */
@@ -57,25 +67,82 @@
     margin-top: -25px;
     border: solid yellow 2px;
     background-color: rgba(255, 255, 0, 0.514);
+}   @media screen and (max-height: 430px) {
+        .electric-text {
+            margin-top: 0px;
+        }
+}
+
+.beedrill-btn-image {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .beedrill-btn-image {
+            margin-top: -15px;
+            scale: 1.5;
+        }
 }
 
 .water-text {
     margin-top: -25px;
     border: solid darkturquoise 2px;
     background-color: rgb(0, 187, 190);
-} 
+}   @media screen and (max-height: 430px) {
+        .water-text {
+            margin-top: 0px;
+        }
+}
+
+.bulbasaur-btn-image {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .bulbasaur-btn-image {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
 
 .grass-text {
     margin-top: -25px;
     border: solid green 2px;
     background-color: rgba(0, 128, 0, 0.692);
-} 
+}   @media screen and (max-height: 430px) {
+        .grass-text {
+            margin-top: 0px;
+        }
+}
+
+.caterpie-btn-image {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .caterpie-btn-image {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
 
 .fire-text {
     margin-top: -25px;
     border: solid red 2px;
     background-color: rgba(255, 0, 0, 0.703);
-} 
+}   @media screen and (max-height: 430px) {
+        .fire-text {
+            margin-top: 0px;
+        }
+}
+
+.charizard-btn-image {
+    margin-top: 5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .charizard-btn-image {
+            margin-top: -15px;
+            scale: 1.2;
+        }
+}
+
 
 /* actual mokepon selection buttons */
 
@@ -90,6 +157,13 @@
     height: 160px;
     background-color: bisque;
     transition: transform 0.2s ease-in-out;
+}
+
+@media screen and (max-height: 430px) {
+    .mokepon-selection-button {
+        width: 100px;
+        height: 125px;
+    }
 }
 
 .mokepon-selection-button:hover {

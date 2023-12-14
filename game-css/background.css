@@ -21,6 +21,13 @@ body {
     border-radius: 2%;
 }
 
+@media screen and (max-height: 430px) {
+    .game-background-image {
+        width: 932px;
+        height: 430px;
+    }
+}
+
 
 
 * {

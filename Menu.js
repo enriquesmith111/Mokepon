@@ -1,4 +1,5 @@
 "use strict";
+// SINGLE PLAYER MENU ELEMENTS AND GAME INFO
 const singlePlayerButton = document.getElementById('singleplayer-btn');
 const multiplayerButton = document.getElementById('multiplayer-btn');
 const firstMenu = document.querySelector('.menu');
@@ -8,8 +9,17 @@ const nextButton = document.querySelector('.next-menu-button');
 const youStatus = document.querySelector('.you-status');
 const oponentStatus = document.querySelector('.oponent-status');
 const bottomInfo = document.querySelector('.bottom-info');
+
+// MULTIPLAYER PLAYER MENU ELEMENTS
+const secondMenuMultiplayer = document.querySelector('.second-menu-multiplayer');
+const backButtonMultiplayer = document.querySelector('.back-menu-button-multiplayer');
+const nextButtonMultiplayer = document.querySelector('.next-menu-button-multiplayer');
+
+// END GAME MENU ELEEMNTS
 const reloadButton = document.getElementById('main-menu-btn');
 
+
+// SINGLE PLAYER BUTTONS
 singlePlayerButton.addEventListener('click', () => {
     firstMenu.style.display = 'none';
     secondMenu.style.display = 'flex';
@@ -20,21 +30,6 @@ backButton.addEventListener('click', () => {
     secondMenu.style.display = 'none';
     selectedButton.classList.remove('clicked')
 })
-
-reloadButton.addEventListener('click', () => {
-    window.location.reload();
-})
-
-
-multiplayerButton.addEventListener('click', () => {
-    console.log('button clicked');
-    firstMenu.style.display = 'none';
-    secondMenu.style.display = 'flex';
-    multiplayer(); // Call the imported multiplayer function
-});
-
-// active state background color change for mokepon buttons
-
 
 const buttons = document.querySelectorAll('.mokepon-selection-button');
 let selectedButton = null;
@@ -55,3 +50,61 @@ for (const button of buttons) {
     });
 };
 
+
+// MULTIPLAYER MENU BUTTONS
+multiplayerButton.addEventListener('click', () => {
+    firstMenu.style.display = 'none';
+    secondMenuMultiplayer.style.display = 'flex';
+});
+
+const multiplayerButtons = document.querySelectorAll('.mokepon-selection-button-multiplayer');
+let selectedButtons = [];
+
+multiplayerButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        if (selectedButtons.length >= 2) {
+            button.classList.remove('clicked-multiplayer');
+            const indexToRemove = selectedButtons.indexOf(button);
+            selectedButtons.splice(indexToRemove, 1);
+        } else {
+            const buttonClass = button.classList.contains('clicked-multiplayer') ? 'remove' : 'add';
+
+            switch (buttonClass) {
+                case 'add':
+                    if (selectedButtons.length < 2) {
+                        button.classList.add('clicked-multiplayer');
+                        selectedButtons.push(button);
+                    }
+                    break;
+
+                case 'remove':
+                    button.classList.remove('clicked-multiplayer');
+                    const indexToRemove = selectedButtons.indexOf(button);
+                    selectedButtons.splice(indexToRemove, 1);
+                    break;
+            }
+        }
+
+        // Enable all buttons if selected buttons are less than 2
+        if (selectedButtons.length < 2) {
+            multiplayerButtons.forEach((otherButton) => {
+                otherButton.disabled = false;
+            });
+        }
+
+        // Check if two buttons are selected, disable the remaining buttons
+        if (selectedButtons.length === 2) {
+            multiplayerButtons.forEach((otherButton) => {
+                if (!selectedButtons.includes(otherButton)) {
+                    otherButton.disabled = true;
+                }
+            });
+        }
+    });
+});
+
+
+// END MENU BUTTONS
+reloadButton.addEventListener('click', () => {
+    window.location.reload();
+})

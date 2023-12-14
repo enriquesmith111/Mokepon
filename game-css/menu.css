@@ -32,7 +32,7 @@
     transform: scale(0.9);
 }
 
-/* second menu with mokepon selection, back and next buttons */
+/* second menu for singleplayer with mokepon selection, back and next buttons */
 
 .second-menu {
     display: none;  /* toggle this on and off when selecting through menus */
@@ -105,7 +105,7 @@
     color: white;
 }
 
-/* next and back buttons */
+/* next and back buttons for single player */
 
 .next-and-back-btn {
     width: 90%;
@@ -138,6 +138,116 @@
 .back-menu-button:active {
     transform: scale(0.9);
 }
+
+/* THIS IS WHERE CSS FOR MULTIPLAYER MENU STARTS */
+/* second menu for multiplayer */
+.second-menu-multiplayer {
+    display: none;  /* toggle this on and off when selecting through menus */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 300px;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    border-radius: 2%;
+}
+
+/* mokepon type texts */
+
+.electric-text-multiplayer {
+    margin-top: -25px;
+    border: solid yellow 2px;
+    background-color: rgba(255, 255, 0, 0.514);
+}
+
+.water-text-multiplayer {
+    margin-top: -25px;
+    border: solid darkturquoise 2px;
+    background-color: rgb(0, 187, 190);
+} 
+
+.grass-text-multiplayer {
+    margin-top: -25px;
+    border: solid green 2px;
+    background-color: rgba(0, 128, 0, 0.692);
+} 
+
+.fire-text-multiplayer {
+    margin-top: -25px;
+    border: solid red 2px;
+    background-color: rgba(255, 0, 0, 0.703);
+} 
+
+/* actual mokepon selection buttons for multiplayer */
+
+.mokepon-selection-multiplayer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mokepon-selection-button-multiplayer {
+    width: 120px;
+    height: 160px;
+    background-color: bisque;
+    transition: transform 0.2s ease-in-out;
+}
+
+.mokepon-selection-button-multiplayer:hover {
+    background-color: rgb(255, 200, 133);
+}
+
+.mokepon-selection-button-multiplayer:active {
+    transform: scale(0.5);
+}
+
+/* next and back buttons for multiplayer player */
+
+
+.next-and-back-btn-multiplayer {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.next-menu-button-multiplayer {
+    width: 70%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.next-menu-button-multiplayer:hover {
+    background-color: rgb(187, 186, 186);
+}
+
+.next-menu-button-multiplayer:active {
+    transform: scale(0.9);
+}
+
+.back-menu-button-multiplayer {
+    width: 30%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.back-menu-button-multiplayer:hover {
+    background-color: rgb(187, 186, 186);
+}
+
+.back-menu-button-multiplayer:active {
+    transform: scale(0.9);
+}
+
+.clicked-multiplayer {
+    background-color: rgb(255, 175, 77);
+    color: white;
+}
+
+
 
 .end-menu {
     display: none;

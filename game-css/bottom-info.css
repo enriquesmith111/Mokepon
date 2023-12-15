@@ -17,6 +17,14 @@
     background-color: blanchedalmond;
     border: solid black 2px;
     border-radius: 2%;
+}    @media screen and (max-height: 430px) {
+    .bottom-info {
+        transition: opacity 0.5s ease-in-out;
+        background-color: rgba(255, 235, 205, 0.7); /* Set opacity to 0.5 for screens less than 430px */
+        height: 90px;
+        top: 74%;
+        width: 82%;
+    }
 }
 
 .bottom-info.fade-in {
@@ -44,12 +52,20 @@
 .two-attack-buttons {
     height: 120px;
     width: 220px;
+}   @media screen and (max-height: 430px) {
+    .two-attack-buttons {
+        height: 100px;
+    }
 }
 
 .attack-btn {
     width: 220px;
     height: 60px;
     transition: transform 0.1s ease-in-out;
+}   @media screen and (max-height: 430px) {
+    .attack-btn {
+        height: 50px;
+    }
 }
 
 .attack-btn:hover {

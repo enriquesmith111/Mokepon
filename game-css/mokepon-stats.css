@@ -17,6 +17,15 @@
     background-color: blanchedalmond;
     border: solid black 2px;
     border-radius: 2%;
+}   @media screen and (max-height: 430px) {
+    .you-status {
+        height: 60px;
+        width: 300px;
+        left: 25%;
+        top: 26%;
+        background-color: rgb(255, 235, 204, 0.7);
+
+    }
 }
 
 .you-status.fade-in {
@@ -50,6 +59,15 @@
     background-color: blanchedalmond;
     border: solid black 2px;
     border-radius: 2%;
+}   @media screen and (max-height: 430px) {
+    .oponent-status {
+        height: 60px;
+        width: 300px;
+        left: 75%;
+        top: 26%;
+        background-color: rgb(255, 235, 204, 0.7);
+
+    }
 }
 
 .oponent-status.fade-in {

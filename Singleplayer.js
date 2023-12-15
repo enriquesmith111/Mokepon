@@ -107,6 +107,7 @@ for (let i = 0; i < playerAttackButtons.length; i++) {
         for (const button of playerAttackButtons) {
             button.classList.add('disabled');
             button.style.backgroundColor = '#808080'; //dark gray
+            button.disabled = true; // Make the button fully unclickable
         }
 
         // Enable all attack buttons after 7 seconds
@@ -114,6 +115,7 @@ for (let i = 0; i < playerAttackButtons.length; i++) {
             for (const button of playerAttackButtons) {
                 button.classList.remove('disabled');
                 AttackButtonColors() // Retrieve attack colors for buttons
+                button.disabled = false; // Make the button fully unclickable
             }
         }, 7000);
 
@@ -212,6 +214,7 @@ function executeAIAttack(attack, opponentType) {
     ai_Animation() // animate attack
     setTimeout(updateHPDOMElement(playerHP, 'you-status-hp'), 100);
     isPlayerTurn = true;
+    return damageRound;
 }
 
 // AI Animations when attacking 
@@ -245,11 +248,7 @@ function ai_Animation() {
 // Damage multiplier calculator depending on attack type and against what mokepon it is used
 function calculateDamageMultiplier(attack, opponentType) {
 
-    let basePower = attack.basePower; // Get the attack's base power
-
     let typeChartValue = typeChart[attack.type][opponentType]; // Get the damage multiplier value from the type chart
-
-    const actualDamage = basePower * typeChartValue;
 
     return typeChartValue;
 }
@@ -258,14 +257,22 @@ function calculateDamageMultiplier(attack, opponentType) {
 
 
 // Update hp number data each time the player or the AI takes damage
-function updateHPDOMElement(currentHP, targetClassName) {
+let ai_HP_before = ai_HP;
+let player_HP_before = playerHP;
+function updateHPDOMElement() {
     const playerDOMHP = document.querySelector('.you-status-hp h3');
     const AI_DOMHP = document.querySelector('.oponent-status-hp h3');
+    const pDamageTaken = document.querySelector('.you-damage-taken');
+    const aiDamageTaken = document.querySelector('.oponent-damage-taken');
 
     if (isPlayerTurn) {
-        AI_DOMHP.textContent = (ai_HP.toFixed(1)); // Update AI HP with one decimal place
+        let damageDealt = ai_HP_before - ai_HP;
+        aiDamageTaken.textContent = `-${damageDealt}`;
+        AI_DOMHP.textContent = ai_HP.toFixed(1); // Update AI HP with one decimal place
     } else {
-        playerDOMHP.textContent = (playerHP.toFixed(1)); // Update player HP with one decimal place
+        let damageDealt = player_HP_before - playerHP;
+        pDamageTaken.textContent = `-${damageDealt}`;
+        playerDOMHP.textContent = playerHP.toFixed(1); // Update player HP with one decimal place
     }
 };
 

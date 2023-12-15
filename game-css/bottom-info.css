@@ -41,7 +41,14 @@
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
+}   @media screen and (max-height: 430px) {
+    .context-info {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
 }
+
+
 
 .four-attack-buttons {
     height: 120px;

@@ -1,3 +1,9 @@
+html {
+    user-select: none; /* Disable zooming */
+    touch-action: none;
+    user-zoom: 0;
+}
+
 body {
     background-color: rgb(37, 37, 96);
     height: 100vh;

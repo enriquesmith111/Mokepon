@@ -39,7 +39,16 @@
     color: rgb(184, 0, 0);
 }
 
+.you-damage-taken {
+    font-size: 50px;
+    position: absolute;
+    color: rgb(184, 0, 0);
+    top: 26%;
+    left: 8%;
+}
 
+
+/* oponent mokepon stats */
 
 .oponent-status {
     z-index: 1;
@@ -77,4 +86,12 @@
 .oponent-status-hp {
     display: flex;
     flex-direction: row;
+}
+
+.oponent-damage-taken {
+    font-size: 50px;
+    position: absolute;
+    color: rgb(184, 0, 0);
+    top: 26%;
+    left: 85%;
 }

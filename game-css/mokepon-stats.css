@@ -40,6 +40,7 @@
 }
 
 .you-damage-taken {
+    display: none;
     font-size: 50px;
     position: absolute;
     color: rgb(184, 0, 0);
@@ -89,6 +90,7 @@
 }
 
 .oponent-damage-taken {
+    display: none;
     font-size: 50px;
     position: absolute;
     color: rgb(184, 0, 0);

@@ -259,20 +259,37 @@ function calculateDamageMultiplier(attack, opponentType) {
 // Update hp number data each time the player or the AI takes damage
 let ai_HP_before = ai_HP;
 let player_HP_before = playerHP;
+let damageDealt = 0;
+
+function fadeInAndOut(element) {
+    element.style.display = 'flex'
+    element.style.opacity = '1'; // Set opacity to 1 for fade-in effect
+
+    // After 1 second, set opacity to 0 for fade-out effect
+    setTimeout(() => {
+        element.style.opacity = '0';
+    }, 2000);
+}
+
 function updateHPDOMElement() {
     const playerDOMHP = document.querySelector('.you-status-hp h3');
     const AI_DOMHP = document.querySelector('.oponent-status-hp h3');
     const pDamageTaken = document.querySelector('.you-damage-taken');
     const aiDamageTaken = document.querySelector('.oponent-damage-taken');
 
+
     if (isPlayerTurn) {
-        let damageDealt = ai_HP_before - ai_HP;
+        damageDealt = ai_HP_before - ai_HP;
         aiDamageTaken.textContent = `-${damageDealt}`;
-        AI_DOMHP.textContent = ai_HP.toFixed(1); // Update AI HP with one decimal place
+        AI_DOMHP.textContent = ai_HP;
+        fadeInAndOut(aiDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
+        ai_HP_before = ai_HP; // Update ai_HP_before for the next turn
     } else {
-        let damageDealt = player_HP_before - playerHP;
+        damageDealt = player_HP_before - playerHP;
         pDamageTaken.textContent = `-${damageDealt}`;
-        playerDOMHP.textContent = playerHP.toFixed(1); // Update player HP with one decimal place
+        playerDOMHP.textContent = playerHP;
+        fadeInAndOut(pDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
+        player_HP_before = playerHP; // Update player_HP_before for the next turn
     }
 };
 
@@ -299,8 +316,6 @@ function checkGameOver() {
         endMenuTitle.textContent = 'You Win!'
         ai_selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
         ai_selectedImage.style.filter = "opacity(1)"
-
-
 
     }
 }

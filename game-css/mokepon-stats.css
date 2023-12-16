@@ -43,9 +43,14 @@
     display: none;
     font-size: 50px;
     position: absolute;
-    color: rgb(184, 0, 0);
+    color: rgb(234, 0, 0);
     top: 26%;
     left: 8%;
+}   @media screen and (max-height: 430px) {
+    .you-damage-taken {
+        top: 30%;
+        left: 33%;
+    }
 }
 
 
@@ -93,7 +98,12 @@
     display: none;
     font-size: 50px;
     position: absolute;
-    color: rgb(184, 0, 0);
+    color: rgb(234, 0, 0);
     top: 26%;
     left: 85%;
+}   @media screen and (max-height: 430px) {
+    .oponent-damage-taken {
+        top: 30%;
+        left: 60%;
+    }
 }

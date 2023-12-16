@@ -151,6 +151,7 @@ function executePlayerAttack(attack) {
     playerAnimation(); // animate attack
     setTimeout(updateHPDOMElement(ai_HP, 'oponent-status-hp')), 100;
     isPlayerTurn = false; // Set isPlayerTurn to false
+    getRandomMultiplier();
 }
 
 
@@ -214,6 +215,7 @@ function executeAIAttack(attack, opponentType) {
 
     ai_Animation() // animate attack
     setTimeout(updateHPDOMElement(playerHP, 'you-status-hp'), 100);
+    getRandomMultiplier()
     isPlayerTurn = true;
     return damageRound;
 }

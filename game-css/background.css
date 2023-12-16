@@ -45,3 +45,7 @@ body {
     /* border: solid red 1px; */
     font-family: 'Pixelify Sans', sans-serif;
 }
+
+button {
+    color: #000;
+}

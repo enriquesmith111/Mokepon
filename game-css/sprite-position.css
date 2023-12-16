@@ -21,7 +21,11 @@
     scale: 4;
     animation: slide-in-left 1s ease-in-out;
     animation: attack-right 0.3  reverse 2 direction fill-mode;
-}   
+}   @media screen and (max-height: 430px) {
+    .you {
+        scale: 3.5;
+    }
+}
 
 @keyframes slide-in-left {
     from {
@@ -45,6 +49,7 @@
 
 .oponent {
      /* toggle display flex to none and back on and off when selecting through menus */
+     z-index: 0;
     display: none;
     position: absolute;
     top: 50%;
@@ -52,6 +57,10 @@
     transform: translate(-50%, -50%);
     scale: 3;
     animation: slide-in-right 1s ease-in-out;
+}   @media screen and (max-height: 430px) {
+    .oponent {
+        scale: 2.5;
+    }
 }
 
 @keyframes slide-in-right {

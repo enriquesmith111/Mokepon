@@ -59,7 +59,7 @@
         .second-menu {
             top: 43%;
             height: 350px;
-            width: 280px;
+            width: 500px;
         }
 }
 
@@ -120,7 +120,7 @@
     margin-top: -5px;
     scale: 2;
 }   @media screen and (max-height: 430px) {
-        .watertortle-btn-image {
+        .wartortle-btn-image {
             margin-top: -15px;
             scale: 1.5;
         }
@@ -151,7 +151,7 @@
     margin-top: -5px;
     scale: 2;
 }   @media screen and (max-height: 430px) {
-        .bulbasaur-btn-image {
+        .kricketune-btn-image {
             margin-top: -15px;
             scale: 1.5;
         }

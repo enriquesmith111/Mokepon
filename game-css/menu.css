@@ -47,7 +47,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     height: 450px;
-    width: 300px;
+    width: 550px;
     flex-direction: column;
     align-content: space-around;
     align-items: center;
@@ -63,8 +63,8 @@
         }
 }
 
-/* mokepon type texts */
-
+/* mokepon type texts and images for buttons */
+/* electric mokepon */
 .electric-text {
     margin-top: -25px;
     border: solid yellow 2px;
@@ -85,6 +85,17 @@
         }
 }
 
+.pikachu-btn-image {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .pikachu-btn-image {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+/* water mokepon */
 .water-text {
     margin-top: -25px;
     border: solid darkturquoise 2px;
@@ -105,6 +116,17 @@
         }
 }
 
+.wartortle-btn-image {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .watertortle-btn-image {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+/* grass mokepon */
 .grass-text {
     margin-top: -25px;
     border: solid green 2px;
@@ -125,6 +147,17 @@
         }
 }
 
+.kricketune-btn-image {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .bulbasaur-btn-image {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+/* fire mokepon */
 .fire-text {
     margin-top: -25px;
     border: solid red 2px;
@@ -142,6 +175,16 @@
         .charizard-btn-image {
             margin-top: -15px;
             scale: 1.2;
+        }
+}
+
+.rapidash-btn-image {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .rapidash-btn-image {
+            margin-top: -15px;
+            scale: 1.5;
         }
 }
 

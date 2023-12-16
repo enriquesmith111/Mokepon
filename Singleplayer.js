@@ -17,7 +17,8 @@ mokeponButtons.forEach((button) => {
 const nextMenuButton = document.querySelector('.next-menu-button');
 const contextInfoElement = document.querySelector('.context-info');
 nextMenuButton.addEventListener('click', () => {
-    const selectedImage = document.querySelector(`img[src="${selectedMokepon.back_sprite}"]`);
+    const selectedImage = document.querySelector(`img[src="components/sprites/${selectedMokepon.name}-back.gif"]`);
+    console.log(selectedImage)
     selectedImage.classList.add('you');
     selectedImage.style.display = 'flex';
     secondMenu.style.display = 'none';

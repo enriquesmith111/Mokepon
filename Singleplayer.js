@@ -130,9 +130,12 @@ for (let i = 0; i < playerAttackButtons.length; i++) {
 // Execute attack selected by player
 function executePlayerAttack(attack) {
     let opponentType = AI_selectedMokepon.type
+
     let damageMultiplier = calculateDamageMultiplier(attack, opponentType);
     let damage = attack.basePower * damageMultiplier;
-    let damageRound = Math.floor(damage)
+    let randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
+    let damageRound = Math.floor(damage * randomFactor);
+    console.log(damage, damageRound)
 
     ai_HP -= damageRound;
     setTimeout(() => { checkGameOver(); }, 4000)
@@ -151,7 +154,6 @@ function executePlayerAttack(attack) {
     playerAnimation(); // animate attack
     setTimeout(updateHPDOMElement(ai_HP, 'oponent-status-hp')), 100;
     isPlayerTurn = false; // Set isPlayerTurn to false
-    getRandomMultiplier();
 }
 
 
@@ -197,7 +199,9 @@ function executeAIAttack(attack, opponentType) {
     // Calculate damage multiplier based on AI attack type and player's selected Mokepon type
     let damageMultiplier = calculateDamageMultiplier(attack, opponentType);
     let damage = attack.basePower * damageMultiplier;
-    let damageRound = Math.floor(damage)
+    let randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
+    let damageRound = Math.floor(damage * randomFactor);
+    console.log(damage, damageRound)
 
     playerHP -= damageRound
     setTimeout(() => { checkGameOver(); }, 4000)
@@ -215,7 +219,6 @@ function executeAIAttack(attack, opponentType) {
 
     ai_Animation() // animate attack
     setTimeout(updateHPDOMElement(playerHP, 'you-status-hp'), 100);
-    getRandomMultiplier()
     isPlayerTurn = true;
     return damageRound;
 }

@@ -133,9 +133,9 @@ function executePlayerAttack(attack) {
 
     let damageMultiplier = calculateDamageMultiplier(attack, opponentType);
     let damage = attack.basePower * damageMultiplier;
-    let randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
+    let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
     let damageRound = Math.floor(damage * randomFactor);
-    console.log(damage, damageRound)
+    console.log(damage, randomFactor, damageRound)
 
     ai_HP -= damageRound;
     setTimeout(() => { checkGameOver(); }, 4000)
@@ -149,7 +149,8 @@ function executePlayerAttack(attack) {
         setTimeout(() => {
             contextInfoElement.textContent += characters[i];
         }, i * 25);
-    }
+    };
+
 
     playerAnimation(); // animate attack
     setTimeout(updateHPDOMElement(ai_HP, 'oponent-status-hp')), 100;
@@ -199,7 +200,7 @@ function executeAIAttack(attack, opponentType) {
     // Calculate damage multiplier based on AI attack type and player's selected Mokepon type
     let damageMultiplier = calculateDamageMultiplier(attack, opponentType);
     let damage = attack.basePower * damageMultiplier;
-    let randomFactor = Math.random() * (1.2 - 0.8) + 0.8;
+    let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
     let damageRound = Math.floor(damage * randomFactor);
     console.log(damage, damageRound)
 

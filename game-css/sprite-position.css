@@ -48,8 +48,7 @@
 
 
 .oponent {
-     /* toggle display flex to none and back on and off when selecting through menus */
-     z-index: 0;
+    z-index: 0;
     display: none;
     position: absolute;
     top: 50%;
@@ -87,3 +86,62 @@
     }
 }
 
+/* player attack sprite gifs against ai */
+
+.player-fire-attack { 
+    display: none;
+    position: absolute;
+    top: 5%;
+    left: 60%;
+}
+
+.player-water-attack { 
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 55%;
+}
+
+.player-grass-attack { 
+    display: none;
+    position: absolute;
+    top: 5%;
+    left: 55%;
+}
+
+.player-electric-attack { 
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 65%;
+}
+
+/* ai attack sprite gifs against player */
+
+.ai-fire-attack { 
+    display: none;
+    position: absolute;
+    top: 30%;
+    left: 20%;
+}
+
+.ai-water-attack { 
+    display: none;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+}
+
+.ai-grass-attack { 
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 15%;
+}
+
+.ai-electric-attack { 
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+}

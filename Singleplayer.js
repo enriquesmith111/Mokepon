@@ -18,7 +18,6 @@ const nextMenuButton = document.querySelector('.next-menu-button');
 const contextInfoElement = document.querySelector('.context-info');
 nextMenuButton.addEventListener('click', () => {
     const selectedImage = document.querySelector(`img[src="components/sprites/${selectedMokepon.name}-back.gif"]`);
-    console.log(selectedImage)
     selectedImage.classList.add('you');
     selectedImage.style.display = 'flex';
     secondMenu.style.display = 'none';
@@ -84,7 +83,6 @@ AI_nextMenuButton.addEventListener('click', () => {
     if (selectedButton) {
         return AI_computerSelectMokepon();
     } else {
-        console.log('Please select a Mokepon first');
     }
 });
 
@@ -135,7 +133,6 @@ function executePlayerAttack(attack) {
     let damage = attack.basePower * damageMultiplier;
     let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
     let damageRound = Math.floor(damage * randomFactor);
-    console.log(damage, randomFactor, damageRound)
 
     ai_HP -= damageRound;
     setTimeout(() => { checkGameOver(); }, 4000)
@@ -153,11 +150,10 @@ function executePlayerAttack(attack) {
 
 
     playerAnimation(); // animate attack
+    playerAttackAnimation(attack) // animate attack sprite
     setTimeout(updateHPDOMElement(ai_HP, 'oponent-status-hp')), 100;
     isPlayerTurn = false; // Set isPlayerTurn to false
 }
-
-
 
 // Player Animations when attacking 
 function playerAnimation() {
@@ -183,6 +179,15 @@ function playerAnimation() {
     }, 200)
 }
 
+function playerAttackAnimation(attack) {
+    const playerAttackImage = document.querySelector(`.player-${attack.type}-attack`)
+
+    if (attack.type != 'normal') {
+        fadeInAndOut(playerAttackImage);
+    }
+
+}
+
 // AI GAME LOGIC ///////////////////////////////////////////////////
 // AI attack selection function
 function AIAttackSelection() {
@@ -191,7 +196,7 @@ function AIAttackSelection() {
         let opponentType = selectedMokepon.type
         let randomIndex = Math.floor(Math.random() * AIAttacks.length);
         let attack = AIAttacks[randomIndex];
-        setTimeout(executeAIAttack(attack, opponentType), 2000)
+        setTimeout(executeAIAttack(attack, opponentType), 2500)
     }
 }
 
@@ -202,7 +207,6 @@ function executeAIAttack(attack, opponentType) {
     let damage = attack.basePower * damageMultiplier;
     let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
     let damageRound = Math.floor(damage * randomFactor);
-    console.log(damage, damageRound)
 
     playerHP -= damageRound
     setTimeout(() => { checkGameOver(); }, 4000)
@@ -219,6 +223,7 @@ function executeAIAttack(attack, opponentType) {
     }
 
     ai_Animation() // animate attack
+    aiAttackAnimation(attack) // animate attack sprite
     setTimeout(updateHPDOMElement(playerHP, 'you-status-hp'), 100);
     isPlayerTurn = true;
     return damageRound;
@@ -250,17 +255,23 @@ function ai_Animation() {
     }, 200)
 }
 
+function aiAttackAnimation(attack) {
+    const aiAttackImage = document.querySelector(`.ai-${attack.type}-attack`)
+
+    if (attack.type != 'normal') {
+        fadeInAndOut(aiAttackImage);
+    }
+
+}
+
 
 // DAMAGE MULTIPLIER FUNCTION AND HP STATUS UNPDATE ////////////////////////////////////////
 // Damage multiplier calculator depending on attack type and against what mokepon it is used
 function calculateDamageMultiplier(attack, opponentType) {
-
     let typeChartValue = typeChart[attack.type][opponentType]; // Get the damage multiplier value from the type chart
 
     return typeChartValue;
 }
-
-
 
 
 // Update hp number data each time the player or the AI takes damage
@@ -269,13 +280,19 @@ let player_HP_before = playerHP;
 let damageDealt = 0;
 
 function fadeInAndOut(element) {
-    element.style.display = 'flex'
-    element.style.opacity = '1'; // Set opacity to 1 for fade-in effect
+    element.style.display = 'flex';
 
-    // After 1 second, set opacity to 0 for fade-out effect
+    // Set opacity to 0 and set transition duration to 1 second
+    element.style.opacity = '0';
+    element.style.transition = 'opacity 0.75s linear';
+
+    // Gradually increase opacity to 1
+    element.style.opacity = '1';
+
+    // After 1 second, gradually decrease opacity to 0
     setTimeout(() => {
         element.style.opacity = '0';
-    }, 2000);
+    }, 1500);
 }
 
 function updateHPDOMElement() {

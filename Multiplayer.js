@@ -161,7 +161,7 @@ function executePlayerAttackMultiplayer(attackMultiplayer) {
     let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
     let damageRound = Math.floor(damage * randomFactor);
 
-    ai_HP -= damageRound;
+    AI_currentMokepon.hp -= damageRound;
     setTimeout(() => { checkGameOverMultiplayer(); }, 4000)
 
     // Show attack and damage information in context-info 
@@ -234,7 +234,7 @@ function executeAIAttackMultiplayer(attackMultiplayer, opponentType) {
     let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
     let damageRound = Math.floor(damage * randomFactor);
 
-    playerHP -= damageRound
+    currentMokepon.hp -= damageRound
     setTimeout(() => { checkGameOverMultiplayer(); }, 4000)
 
 
@@ -301,8 +301,10 @@ function calculateDamageMultiplierMultiplayer(attackMultiplayer, opponentType) {
 
 
 // Update hp number data each time the player or the AI takes damage
-let ai_HP_beforeMultiplayer = ai_HP;
-let player_HP_beforeMultiplayer = playerHP;
+let ai_HP1_beforeMultiplayer = ai_HP1;
+let player1_HP_beforeMultiplayer = playerHP1;
+let ai_HP2_beforeMultiplayer = ai_HP2;
+let player2_HP_beforeMultiplayer = playerHP2;
 let damageDealtMultiplayer = 0;
 
 function fadeInAndOutMultiplayer(element) {
@@ -329,17 +331,17 @@ function updateHPDOMElementMultiplayer() {
 
 
     if (isPlayerTurnMultiplayer) {
-        damageDealt = ai_HP_before - ai_HP;
+        damageDealt = ai_HP_beforeMultiplayer - AI_currentMokepon.hp;
         aiDamageTaken.textContent = `-${damageDealt}`;
-        AI_DOMHP.textContent = ai_HP;
+        AI_DOMHP.textContent = AI_currentMokepon.hp;
         fadeInAndOutMultiplayer(aiDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
-        ai_HP_before = ai_HP; // Update ai_HP_before for the next turn
+        ai_HP_beforeMultiplayer = AI_currentMokepon.hp; // Update ai_HP_before for the next turn
     } else {
-        damageDealt = player_HP_before - playerHP;
+        damageDealt = player_HP_beforeMultiplayer - currentMokepon.hp;
         pDamageTaken.textContent = `-${damageDealt}`;
-        playerDOMHP.textContent = playerHP;
+        playerDOMHP.textContent = currentMokepon.hp;
         fadeInAndOutMultiplayer(pDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
-        player_HP_before = playerHP; // Update player_HP_before for the next turn
+        player_HP_beforeMultiplayer = currentMokepon.hp; // Update player_HP_before for the next turn
     }
 };
 
@@ -347,7 +349,7 @@ function checkGameOverMultiplayer() {
     if (playerHP1 <= 0 && playerHP2 <= 0) {
         const endGameMenu = document.querySelector('.end-menu')
         const endMenuTitle = document.querySelector('.end-menu-title')
-        const selectedImage = document.querySelector(`img[src="${selectedMokepon.back_sprite}"]`);
+        const selectedImage = document.querySelector(`img[src="${currentMokepon.back_sprite}"]`);
 
 
         endGameMenu.style.display = 'flex'
@@ -356,10 +358,10 @@ function checkGameOverMultiplayer() {
         selectedImage.style.filter = "opacity(1)"
 
 
-    } else if (ai_HP <= 0 && playerHP2 <= 0) {
+    } else if (ai_HP1 <= 0 && ai_HP2 <= 0) {
         const endGameMenu = document.querySelector('.end-menu')
         const endMenuTitle = document.querySelector('.end-menu-title')
-        const ai_selectedImage = document.querySelector(`img[src="components/sprites/${AI_selectedMokepon.name}.gif"]`);
+        const ai_selectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
 
 
         endGameMenu.style.display = 'flex'

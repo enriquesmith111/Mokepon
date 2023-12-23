@@ -99,9 +99,18 @@ multiplayerButtons.forEach((button) => {
                     otherButton.disabled = true;
                 }
             });
+
         }
     });
 });
+
+backButtonMultiplayer.addEventListener('click', () => {
+    firstMenu.style.display = 'flex'; // Correct the spelling of "flex"
+    secondMenuMultiplayer.style.display = 'none';
+    selectedButtons.length = 0; // Initialize the selectedButtons array
+});
+
+
 
 
 // END MENU BUTTONS

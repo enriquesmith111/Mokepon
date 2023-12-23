@@ -1,5 +1,4 @@
 "use strict";
-
 // SECTION FOR PLAYER MOKEPON SELECTION
 // Initialize selectedMokepon before attaching event listeners
 let selectedMokepon = null;
@@ -58,7 +57,6 @@ document.querySelectorAll('.mokepon-selection-button').forEach((button) => {
     });
 });
 
-
 // SECTION FOR AI MOKEPON SELECTION
 // Initialize variable to store the AI's selected Mokepon object
 let AI_selectedMokepon = null;
@@ -113,13 +111,17 @@ for (let i = 0; i < playerAttackButtons.length; i++) {
         setTimeout(() => {
             for (const button of playerAttackButtons) {
                 button.classList.remove('disabled');
-                AttackButtonColors() // Retrieve attack colors for buttons
+                if (selectedMokepon != undefined) {
+                    AttackButtonColors() // Retrieve attack colors for buttons
+                }
                 button.disabled = false; // Make the button fully unclickable
             }
         }, 7000);
+        if (selectedMokepon != null) {
+            let attack = selectedMokepon.attacks[i];
 
-        let attack = selectedMokepon.attacks[i];
-        executePlayerAttack(attack);
+            executePlayerAttack(attack);
+        }
         isPlayerTurn = false;
         setTimeout(AIAttackSelection, 4000);
     });
@@ -191,7 +193,7 @@ function playerAttackAnimation(attack) {
 // AI GAME LOGIC ///////////////////////////////////////////////////
 // AI attack selection function
 function AIAttackSelection() {
-    if (!isPlayerTurn && (playerHP > 0 && ai_HP > 0)) {
+    if (!isPlayerTurn && (playerHP > 0 && ai_HP > 0) && AI_selectedMokepon != null) {
         const AIAttacks = AI_selectedMokepon.attacks;
         let opponentType = selectedMokepon.type
         let randomIndex = Math.floor(Math.random() * AIAttacks.length);

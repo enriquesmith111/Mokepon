@@ -123,6 +123,12 @@ let playerHP2 = 100;
 let ai_HP1 = 100;
 let ai_HP2 = 100;
 
+const SwapMokeponBtn = document.querySelector('#swap-btn')
+SwapMokeponBtn.addEventListener('click', () => {
+    SwapMokepon()
+    setTimeout(AIAttackSelectionMultiplayer, 4000);
+})
+
 const playerAttackButtonsMultiplayer = document.querySelectorAll('.attack-btn');
 for (let i = 0; i < playerAttackButtonsMultiplayer.length; i++) {
     const attackButtonMultiplayer = playerAttackButtonsMultiplayer[i];
@@ -180,7 +186,7 @@ function executePlayerAttackMultiplayer(attackMultiplayer) {
 
     playerAnimationMultiplayer(); // animate attack
     playerAttackAnimationMultiplayer(attackMultiplayer) // animate attack sprite
-    setTimeout(updateHPDOMElementMultiplayer(ai_HP, 'oponent-status-hp')), 100;
+    // setTimeout(updateHPDOMElementMultiplayer(ai_HP, 'oponent-status-hp')), 100;
     isPlayerTurnMultiplayer = false; // Set isPlayerTurn to false
 }
 
@@ -219,7 +225,7 @@ function playerAttackAnimationMultiplayer(attackMultiplayer) {
 // AI GAME LOGIC ///////////////////////////////////////////////////
 // AI attack selection function
 function AIAttackSelectionMultiplayer() {
-    if (!isPlayerTurnMultiplayer && ((playerHP1 > 0 && ai_HP1 > 0) && (playerHP2 > 0 && ai_HP2 > 0))) {
+    if (!isPlayerTurnMultiplayer && ((playerHP1 > 0 && ai_HP1 > 0) && (playerHP2 > 0 && ai_HP2 > 0)) && currentMokepon != undefined) {
         const AIAttacksMultiplayer = AI_currentMokepon.attacks;
         let opponentType = AI_currentMokepon.type
         let randomIndex = Math.floor(Math.random() * AIAttacksMultiplayer.length);
@@ -252,7 +258,7 @@ function executeAIAttackMultiplayer(attackMultiplayer, opponentType) {
 
     ai_AnimationMultiplayer() // animate attack
     aiAttackAnimationMultiplayer(attackMultiplayer) // animate attack sprite
-    setTimeout(updateHPDOMElementMultiplayer(playerHP, 'you-status-hp'), 100);
+    // setTimeout(updateHPDOMElementMultiplayer(playerHP, 'you-status-hp'), 100);
     isPlayerTurnMultiplayer = true;
     return damageRound;
 }
@@ -325,27 +331,27 @@ function fadeInAndOutMultiplayer(element) {
     }, 1500);
 }
 
-function updateHPDOMElementMultiplayer() {
-    const playerDOMHP = document.querySelector('.you-status-hp h3');
-    const AI_DOMHP = document.querySelector('.oponent-status-hp h3');
-    const pDamageTaken = document.querySelector('.you-damage-taken');
-    const aiDamageTaken = document.querySelector('.oponent-damage-taken');
+// function updateHPDOMElementMultiplayer() {
+//     const playerDOMHP = document.querySelector('.you-status-hp h3');
+//     const AI_DOMHP = document.querySelector('.oponent-status-hp h3');
+//     const pDamageTaken = document.querySelector('.you-damage-taken');
+//     const aiDamageTaken = document.querySelector('.oponent-damage-taken');
 
 
-    if (isPlayerTurnMultiplayer) {
-        damageDealt = ai_HP_beforeMultiplayer - AI_currentMokepon.hp;
-        aiDamageTaken.textContent = `-${damageDealt}`;
-        AI_DOMHP.textContent = AI_currentMokepon.hp;
-        fadeInAndOutMultiplayer(aiDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
-        ai_HP_beforeMultiplayer = AI_currentMokepon.hp; // Update ai_HP_before for the next turn
-    } else {
-        damageDealt = player_HP_beforeMultiplayer - currentMokepon.hp;
-        pDamageTaken.textContent = `-${damageDealt}`;
-        playerDOMHP.textContent = currentMokepon.hp;
-        fadeInAndOutMultiplayer(pDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
-        player_HP_beforeMultiplayer = currentMokepon.hp; // Update player_HP_before for the next turn
-    }
-};
+//     if (isPlayerTurnMultiplayer) {
+//         damageDealt = ai_HP_beforeMultiplayer - AI_currentMokepon.hp;
+//         aiDamageTaken.textContent = `-${damageDealt}`;
+//         AI_DOMHP.textContent = AI_currentMokepon.hp;
+//         fadeInAndOutMultiplayer(aiDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
+//         ai_HP_beforeMultiplayer = AI_currentMokepon.hp; // Update ai_HP_before for the next turn
+//     } else {
+//         damageDealt = player_HP_beforeMultiplayer - currentMokepon.hp;
+//         pDamageTaken.textContent = `-${damageDealt}`;
+//         playerDOMHP.textContent = currentMokepon.hp;
+//         fadeInAndOutMultiplayer(pDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
+//         player_HP_beforeMultiplayer = currentMokepon.hp; // Update player_HP_before for the next turn
+//     }
+// };
 
 function checkGameOverMultiplayer() {
     if (playerHP1 <= 0 && playerHP2 <= 0) {
@@ -370,7 +376,31 @@ function checkGameOverMultiplayer() {
         endMenuTitle.textContent = 'You Win!'
         ai_selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
         ai_selectedImage.style.filter = "opacity(1)"
-
     }
+}
+
+function SwapMokepon() {
+    let selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+    if ((selectedMokepons[1].hp > 0 && currentMokepon.hp > 0)
+        && (currentMokepon === selectedMokepons[0])) {
+        selectedImage.classList.remove('you');
+        selectedImage.style.display = 'none';
+
+        currentMokepon = selectedMokepons[1]
+        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+        selectedImage.classList.add('you');
+        selectedImage.style.display = 'flex';
+
+    } else if ((selectedMokepons[1].hp > 0 && currentMokepon.hp > 0)
+        && (currentMokepon === selectedMokepons[1])) {
+        selectedImage.classList.remove('you');
+        selectedImage.style.display = 'none';
+
+        currentMokepon = selectedMokepons[0]
+        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+        selectedImage.classList.add('you');
+        selectedImage.style.display = 'flex';
+    }
+    isPlayerTurnMultiplayer = false
 }
 

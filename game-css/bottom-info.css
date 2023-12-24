@@ -21,7 +21,7 @@
     .bottom-info {
         transition: opacity 0.5s ease-in-out;
         background-color: rgba(255, 235, 205, 0.7); /* Set opacity to 0.5 for screens less than 430px */
-        height: 90px;
+        height: 95px;
         top: 74%;
         width: 82%;
     }
@@ -80,5 +80,17 @@
 }
 
 .attack-btn:active {
+    transform: scale(0.9);
+}
+
+#swap-btn {
+    display: none;
+}
+
+#swap-btn:hover {
+    background-color: rgb(192, 192, 192);
+}
+
+#swap-btn:active {
     transform: scale(0.9);
 }

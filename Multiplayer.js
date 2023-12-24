@@ -28,9 +28,11 @@ mokeponButtonsMultiplayer.forEach((button) => {
 });
 
 nextButtonMultiplayer.addEventListener('click', () => {
-    // Set multiplayer to true only inside the event handler
-    currentMokepon = selectedMokepons[0]
     const selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+    const SwapMokeponBtn = document.getElementById('swap-btn')
+
+    currentMokepon = selectedMokepons[0];
+    SwapMokeponBtn.style.display = 'flex';
     selectedImage.classList.add('you');
     selectedImage.style.display = 'flex';
     secondMenuMultiplayer.style.display = 'none';

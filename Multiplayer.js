@@ -99,10 +99,10 @@ let ai_HPM = 20;
 // Handle player attack selection
 const playerAttackButtonsM = document.querySelectorAll('.attack-btn');
 const attackButtonsArrayM = Array.from(playerAttackButtons);
+// check if mokepon died, if so change mokepon
 
 for (let i = 0; i < attackButtonsArray.length; i++) {
     const attackButtonM = attackButtonsArray[i];
-
     attackButtonM.addEventListener('click', () => {
         disableAllButtonsM(attackButtonsArrayM);
         enableAllButtonsM(attackButtonsArrayM);
@@ -179,53 +179,48 @@ function playerAnimationM(attackM) {
     }
 }
 
-function autoplayerSwap() {
-    let selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+function forceplayerSwap() {
     if ((currentMokepon == selectedMokepons[0])
         && (currentMokepon.hp <= 0 && selectedMokepons[1].hp > 0)) {
+
         let newContextInfoText = `Your ${currentMokepon.name} has been downed! 
-        Calling in ${selectedMokepons[1].name} for help!`;
+        Calling in another Mokepon for help!`;
         contextInfoElement.textContent = '';
         const characters = newContextInfoText.split('');
         for (let i = 0; i < characters.length; i++) {
             setTimeout(() => {
                 contextInfoElement.textContent += characters[i];
             }, i * 25);
+
+            const playerAttackButtonsMultiplayer = document.querySelectorAll('.attack-btn');
+            for (let i = 0; i < playerAttackButtonsMultiplayer.length; i++) {
+                const attackButtonMultiplayer = playerAttackButtonsMultiplayer[i];
+                console.log(attackButtonMultiplayer)
+                // Disable all attack buttons
+                for (const button of playerAttackButtonsMultiplayer) {
+                    button.classList.add('disabled');
+                    button.style.backgroundColor = '#808080'; //dark gray
+                    button.disabled = true; // Make the button fully unclickable
+                }
+
+            }
+
         }
-        selectedImage.classList.remove('you');
-        selectedImage.style.display = 'none';
-        currentMokepon = selectedMokepons[1]
-        playerDOMHPMupdate.textContent = currentMokepon.hp; // update health
-        playerMokeponElementM.textContent = currentMokepon.name; // update name
-        player_HP_beforeM = currentMokepon.hp;
-        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
-        selectedImage.classList.add('you');
-        selectedImage.style.display = 'flex';
-        console.log(currentMokepon.hp)
-        isPlayerTurnM = false;
 
     } else if ((currentMokepon == selectedMokepons[1])
         && (currentMokepon.hp <= 0 && selectedMokepons[0].hp > 0)) {
+
         let newContextInfoText = `Your ${currentMokepon.name} has been downed! 
-        Calling in ${selectedMokepons[0].name} for help!`;
+        Calling in $another Mokepon for help!`;
         contextInfoElement.textContent = '';
         const characters = newContextInfoText.split('');
         for (let i = 0; i < characters.length; i++) {
             setTimeout(() => {
                 contextInfoElement.textContent += characters[i];
             }, i * 25);
+
+            enableAllButtonsM(attackButtonsArrayM);
         }
-        selectedImage.classList.remove('you');
-        selectedImage.style.display = 'none';
-        currentMokepon = selectedMokepons[0]
-        playerDOMHPMupdate.textContent = currentMokepon.hp; // update health
-        playerMokeponElementM.textContent = currentMokepon.name; // update name
-        player_HP_beforeM = currentMokepon.hp;
-        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
-        selectedImage.classList.add('you');
-        selectedImage.style.display = 'flex';
-        console.log(currentMokepon.hp)
-        isPlayerTurnM = false;
     }
 }
 
@@ -306,6 +301,7 @@ function autoAiSwap() {
     let aiSelectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
     if ((AI_currentMokepon == AI_selectedMokepons[0])
         && (AI_currentMokepon.hp <= 0 && AI_selectedMokepons[1].hp > 0)) {
+
         let newContextInfoText = `Your oponents ${AI_currentMokepon.name} has been downed! 
         Your oponent calls in ${AI_selectedMokepons[1].name} to the fight!`;
         contextInfoElement.textContent = '';
@@ -328,6 +324,7 @@ function autoAiSwap() {
 
     } else if ((AI_currentMokepon == AI_selectedMokepons[1])
         && (AI_currentMokepon.hp <= 0 && AI_selectedMokepons[0].hp > 0)) {
+
         let newContextInfoText = `Your oponents ${AI_currentMokepon.name} has been downed! 
         Your oponent calls in ${AI_selectedMokepons[0].name} to the fight!`;
         contextInfoElement.textContent = '';
@@ -367,6 +364,8 @@ const pDamageTakenM = document.querySelector('.you-damage-taken');
 const aiDamageTakenM = document.querySelector('.oponent-damage-taken');
 
 function updateHPDOMElementM() {
+    currentMokepon.hp
+    AI_currentMokepon.hp
     if (isPlayerTurnM) {
         damageDealtM = ai_HP_beforeM - AI_currentMokepon.hp;
         aiDamageTakenM.textContent = `-${damageDealtM}`;
@@ -384,6 +383,7 @@ function updateHPDOMElementM() {
 
 // check player and AI hp to determine game status
 function checkGameOverM() {
+    forceplayerSwap()
     const endGameMenu = document.querySelector('.end-menu')
     const endMenuTitle = document.querySelector('.end-menu-title')
     const selectedImage = document.querySelector(`img[src="${currentMokepon.back_sprite}"]`);
@@ -410,7 +410,8 @@ function SwapMokeponButtonM() {
     if ((selectedMokepons[1].hp > 0 && selectedMokepons[0].hp > 0)
         && (currentMokepon === selectedMokepons[0])) {
 
-        let newContextInfoText = `Your ${currentMokepon.name} retreats! You call in ${selectedMokepons[1].name} for help!`;
+        let newContextInfoText = `Your ${currentMokepon.name} retreats! 
+        You call in ${selectedMokepons[1].name} for help!`;
         contextInfoElement.textContent = '';
         const characters = newContextInfoText.split('');
         for (let i = 0; i < characters.length; i++) {
@@ -470,7 +471,7 @@ function enableAllButtonsM(buttons) {
         for (const button of buttons) {
             button.classList.remove('disabled');
             if (currentMokepon != undefined) {
-                autoplayerSwap() // check if mokepon died, if so change mokepon
+                player_HP_beforeM = currentMokepon.hp
                 populateAttackButtonsM();
                 AttackButtonColorsM(); // Retrieve attack colors for buttons
                 SwapMokeponBtn.style.background = 'white'

@@ -28,7 +28,9 @@ singlePlayerButton.addEventListener('click', () => {
 backButton.addEventListener('click', () => {
     firstMenu.style.display = 'flex';
     secondMenu.style.display = 'none';
-    selectedButton.classList.remove('clicked')
+    if (selectedButton != null) {
+        selectedButton.classList.remove('clicked')
+    }
 })
 
 const buttons = document.querySelectorAll('.mokepon-selection-button');
@@ -99,6 +101,7 @@ multiplayerButtons.forEach((button) => {
         if (selectedButtons.length < 2) {
             multiplayerButtons.forEach((otherButton) => {
                 otherButton.disabled = false;
+                nextButtonMultiplayer.disabled = true;
             });
         }
 
@@ -107,6 +110,7 @@ multiplayerButtons.forEach((button) => {
             multiplayerButtons.forEach((otherButton) => {
                 if (!selectedButtons.includes(otherButton)) {
                     otherButton.disabled = true;
+                    nextButtonMultiplayer.disabled = false;
                 }
             });
 

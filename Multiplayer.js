@@ -1,62 +1,49 @@
 "use strict"
+
+// player mokepons and mokepon on screen
 let selectedMokepons = [];
 let currentMokepon = undefined;
 
-const mokeponButtonsMultiplayer = document.querySelectorAll('.mokepon-selection-button-multiplayer');
+// AI mokepon and mokepon on sceen
+let AI_selectedMokepons = [];
+let AI_currentMokepon = undefined;
 
-mokeponButtonsMultiplayer.forEach((button) => {
-    button.addEventListener('click', () => {
-        const mokeponName = button.id.split('-')[0];
-
-        const indexOfMokepon = selectedMokepons.indexOf(mokepons[mokeponName]);
-        if (indexOfMokepon !== -1) {
-            // If the Mokepon is already in the array, remove it
-            selectedMokepons.splice(indexOfMokepon, 1);
-        } else {
-            // If the Mokepon is not in the array, add it
-            // Add the new Mokepon to the selected array
-            selectedMokepons.push(mokepons[mokeponName]);
-
-            // If the array is full, remove the oldest Mokepon from the array
-            if (selectedMokepons.length === 3) {
-                selectedMokepons.pop();
-            }
-        }
-
-        // Log the selected Mokepon names to the console
-    });
-});
+// make player and AI current sprites appear after next button is pressed
+const playerMokeponElementM = document.querySelector('.you-status h2');
 
 nextButtonMultiplayer.addEventListener('click', () => {
     const selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
-    currentMokepon = selectedMokepons[0];
-    SwapMokeponBtn.style.display = 'flex';
+    currentMokepon = selectedMokepons[0]; // first chosen Mokepon becomes current 
+    SwapMokeponBtn.style.display = 'flex'; // show swap btn in multiplayer mode
     selectedImage.classList.add('you');
     selectedImage.style.display = 'flex';
     secondMenuMultiplayer.style.display = 'none';
     youStatus.classList.add('fade-in');
     oponentStatus.classList.add('fade-in');
     bottomInfo.classList.add('fade-in');
-    const playerMokeponElement = document.querySelector('.you-status h2');
-    playerMokeponElement.textContent = currentMokepon.name;
+    playerMokeponElementM.textContent = currentMokepon.name;
     contextInfoElement.textContent = `You choose ${currentMokepon.name}!`;
+    AI_computerSelectMokeponM(); // AI random current Mokepon sprite appear function
 });
 
+
 // change attack buttons to ones corresponding to Mokepon attack names
-const populateAttackButtonsMultiplayer = () => {
-    const attackButtonsMultiplayer = document.querySelectorAll('.attack-btn');
-    for (let i = 0; i < attackButtonsMultiplayer.length; i++) {
-        const attackMultiplayer = currentMokepon.attacks[i];
-        attackButtonsMultiplayer[i].textContent = attackMultiplayer.name;
+const attackButtonsM = document.querySelectorAll('.attack-btn');
+const SwapMokeponBtnM = document.querySelector('#swap-btn');
+
+const populateAttackButtonsM = () => {
+    for (let i = 0; i < attackButtonsM.length; i++) {
+        const attackM = currentMokepon.attacks[i];
+        attackButtonsM[i].textContent = attackM.name;
     }
 };
 
 // change attack buttons colors to ones corresponding to Mokepon attack
-const AttackButtonColorsMultiplayer = () => {
-    const attackButtonsMultiplayer = document.querySelectorAll('.attack-btn');
-    for (let i = 0; i < attackButtonsMultiplayer.length; i++) {
+const AttackButtonColorsM = () => {
+    const attackButtonsM = document.querySelectorAll('.attack-btn');
+    for (let i = 0; i < attackButtonsM.length; i++) {
         const color = currentMokepon.attacks[i].color;
-        attackButtonsMultiplayer[i].style.backgroundColor = color;
+        attackButtonsM[i].style.backgroundColor = color;
     }
 };
 
@@ -64,24 +51,19 @@ const AttackButtonColorsMultiplayer = () => {
 document.querySelectorAll('.mokepon-selection-button-multiplayer').forEach((button) => {
     button.addEventListener('click', () => {
         currentMokepon = selectedMokepons[0];
-        populateAttackButtonsMultiplayer();
-        AttackButtonColorsMultiplayer();
+        populateAttackButtonsM();
+        AttackButtonColorsM();
     });
 });
 
-// SECTION FOR AI MOKEPON SELECTION
-// Initialize variable to store the AI's selected Mokepon object
-let AI_selectedMokepons = [];
-let AI_currentMokepon = undefined;
+// AI random Mokepons selection Function
+const aiMokeponElementM = document.querySelector('.oponent-status h2');
 
-
-function AI_computerSelectMokeponMultiplayer() {
+function AI_computerSelectMokeponM() {
     const mokeponNames = Object.keys(mokepons); // Extract an array of Mokepon names
-
     // Select two random Mokepons
-    const randomIndex1 = Math.floor(Math.random() * mokeponNames.length);
+    let randomIndex1 = Math.floor(Math.random() * mokeponNames.length);
     let selectedMokeponName1 = mokeponNames[randomIndex1];
-
     let randomIndex2 = Math.floor(Math.random() * mokeponNames.length);
     let selectedMokeponName2 = mokeponNames[randomIndex2];
 
@@ -95,81 +77,66 @@ function AI_computerSelectMokeponMultiplayer() {
 
     // Store the selected Mokepons in the array
     AI_selectedMokepons = [ai_selectedMokepon1, ai_selectedMokepon2]; // Store the AI's selected Mokepon object
-    AI_currentMokepon = AI_selectedMokepons[0];
+    AI_currentMokepon = AI_selectedMokepons[0]; // first selected mokepon will be current
 
     // Update the AI's Mokepon sprite display
     const AI_selectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
     AI_selectedImage.classList.add('oponent');
     AI_selectedImage.style.display = 'flex';
-    const aiMokeponElement = document.querySelector('.oponent-status h2');
-    aiMokeponElement.textContent = AI_currentMokepon.name;
+    aiMokeponElementM.textContent = AI_currentMokepon.name;
 };
 
-const AI_nextMenuButtonMultiplayer = document.querySelector('.next-menu-button-multiplayer');
-AI_nextMenuButtonMultiplayer.addEventListener('click', () => {
-    if (AI_nextMenuButtonMultiplayer) {
-        return AI_computerSelectMokeponMultiplayer();
-    } else {
-    }
-});
 
+// MULTIPLAYER GAME LOGIC AFTER MENU SELECTION SCREENS
 // Turn-based logic data
-let attackMultiplayer = null;
-let isPlayerTurnMultiplayer = true;
-let playerHPMultiplayer = 100;
-let ai_HPMultiplayer = 100;
+let attackM = null;
+let isPlayerTurnM = true;
+let playerHPM = 20;
+let ai_HPM = 20;
 
 
-SwapMokeponBtn.addEventListener('click', () => {
-    SwapMokepon()
-    setTimeout(AIAttackSelectionMultiplayer, 4000);
-})
+// PLAYER GAME LOGIC ///////////////////////////////////////////////////
+// Handle player attack selection
+const playerAttackButtonsM = document.querySelectorAll('.attack-btn');
+const attackButtonsArrayM = Array.from(playerAttackButtons);
 
-const playerAttackButtonsMultiplayer = document.querySelectorAll('.attack-btn');
-for (let i = 0; i < playerAttackButtonsMultiplayer.length; i++) {
-    const attackButtonMultiplayer = playerAttackButtonsMultiplayer[i];
+for (let i = 0; i < attackButtonsArray.length; i++) {
+    const attackButtonM = attackButtonsArray[i];
 
-    attackButtonMultiplayer.addEventListener('click', () => {
-        // Disable all attack buttons
-        for (const button of playerAttackButtonsMultiplayer) {
-            button.classList.add('disabled');
-            button.style.backgroundColor = '#808080'; //dark gray
-            button.disabled = true; // Make the button fully unclickable
-        }
-
-        // Enable all attack buttons after 7 seconds
-        setTimeout(() => {
-            for (const button of playerAttackButtonsMultiplayer) {
-                button.classList.remove('disabled');
-                if (currentMokepon != undefined) {
-                    AttackButtonColorsMultiplayer() // Retrieve attack colors for buttons
-                }
-                button.disabled = false; // Make the button fully unclickable
-            }
-        }, 7000);
+    attackButtonM.addEventListener('click', () => {
+        disableAllButtonsM(attackButtonsArrayM);
+        enableAllButtonsM(attackButtonsArrayM);
         if (currentMokepon != undefined) {
-            let attackMultiplayer = currentMokepon.attacks[i];
-            executePlayerAttackMultiplayer(attackMultiplayer);
+            let attackM = currentMokepon.attacks[i];
+            executePlayerAttackM(attackM);
         }
-        isPlayerTurnMultiplayer = false;
-        setTimeout(AIAttackSelectionMultiplayer, 4000);
+        isPlayerTurnM = false;
+        setTimeout(AIAttackSelectionM, 4000);
     });
 }
 
-// Execute attack selected by player
-function executePlayerAttackMultiplayer(attackMultiplayer) {
-    let opponentType = AI_currentMokepon.type
+SwapMokeponBtn.addEventListener('click', () => {
+    SwapMokeponButtonM()
+    disableAllButtonsM(attackButtonsArrayM)
+    enableAllButtonsM(attackButtonsArrayM)
+    setTimeout(AIAttackSelectionM, 4000);
+})
 
-    let damageMultiplier = calculateDamageMultiplierMultiplayer(attackMultiplayer, opponentType);
-    let damage = attackMultiplayer.basePower * damageMultiplier;
+
+// Execute attack selected by player
+function executePlayerAttackM(attackM) {
+    let opponentType = AI_currentMokepon.type
+    let damageMultiplier = calculateDamageMultiplierM(attackM, opponentType);
+    let damage = attackM.basePower * damageMultiplier;
     let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
     let damageRound = Math.floor(damage * randomFactor);
 
     AI_currentMokepon.hp -= damageRound;
-    setTimeout(() => { checkGameOverMultiplayer(); }, 4000)
+    setTimeout(() => { checkGameOverM(); }, 4000)
 
     // Show attack and damage information in context-info 
-    let newContextInfoText = `Your ${currentMokepon.name} attacks with: ${attackMultiplayer.name}! it deals ${damageRound} points of damage to your oponents ${AI_currentMokepon.name}!`;
+    let newContextInfoText = `Your ${currentMokepon.name} attacks with: ${attackM.name}!
+    It deals ${damageRound} points of damage to your oponents ${AI_currentMokepon.name}!`;
     contextInfoElement.textContent = '';
     const characters = newContextInfoText.split('');
 
@@ -178,17 +145,16 @@ function executePlayerAttackMultiplayer(attackMultiplayer) {
             contextInfoElement.textContent += characters[i];
         }, i * 25);
     };
-
-
-    playerAnimationMultiplayer(); // animate attack
-    playerAttackAnimationMultiplayer(attackMultiplayer) // animate attack sprite
-    setTimeout(updateHPDOMElementMultiplayer(ai_HPMultiplayer, 'oponent-status-hp')), 100;
-    isPlayerTurnMultiplayer = false; // Set isPlayerTurn to false
+    playerAnimationM(attackM); // animate attack
+    setTimeout(updateHPDOMElementM(ai_HPM, 'oponent-status-hp')), 100;
+    isPlayerTurnM = false; // Set isPlayerTurn to false
 }
 
 // Player Animations when attacking 
-function playerAnimationMultiplayer() {
+function playerAnimationM(attackM) {
     const selectedImage = document.querySelector(`img[src="${currentMokepon.back_sprite}"]`);
+    const playerAttackImage = document.querySelector(`.player-${attackM.type}-attack`)
+
     selectedImage.style.transition = `transform 0.4s linear, transform 0.4s linear`; // slide animation
     selectedImage.style.transform = `translateX(50px) translateY(-50px)`; //slide right
 
@@ -201,49 +167,96 @@ function playerAnimationMultiplayer() {
     }, 500);
 
     const AI_selectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
-
     setTimeout(() => { // AI flicker white when attacked
         AI_selectedImage.style.filter = 'brightness(100)';
         setTimeout(() => {  // AI back to normal
             AI_selectedImage.style.filter = 'brightness(1)';
         }, 120);
     }, 200)
+
+    if (attackM.type != 'normal') {
+        fadeInAndOutM(playerAttackImage);
+    }
 }
 
-function playerAttackAnimationMultiplayer(attackMultiplayer) {
-    const playerAttackImage = document.querySelector(`.player-${attackMultiplayer.type}-attack`)
+function autoplayerSwap() {
+    let selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+    if ((currentMokepon == selectedMokepons[0])
+        && (currentMokepon.hp <= 0 && selectedMokepons[1].hp > 0)) {
+        let newContextInfoText = `Your ${currentMokepon.name} has been downed! 
+        Calling in ${selectedMokepons[1].name} for help!`;
+        contextInfoElement.textContent = '';
+        const characters = newContextInfoText.split('');
+        for (let i = 0; i < characters.length; i++) {
+            setTimeout(() => {
+                contextInfoElement.textContent += characters[i];
+            }, i * 25);
+        }
+        selectedImage.classList.remove('you');
+        selectedImage.style.display = 'none';
+        currentMokepon = selectedMokepons[1]
+        playerDOMHPMupdate.textContent = currentMokepon.hp; // update health
+        playerMokeponElementM.textContent = currentMokepon.name; // update name
+        player_HP_beforeM = currentMokepon.hp;
+        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+        selectedImage.classList.add('you');
+        selectedImage.style.display = 'flex';
+        console.log(currentMokepon.hp)
+        isPlayerTurnM = false;
 
-    if (attackMultiplayer.type != 'normal') {
-        fadeInAndOutMultiplayer(playerAttackImage);
+    } else if ((currentMokepon == selectedMokepons[1])
+        && (currentMokepon.hp <= 0 && selectedMokepons[0].hp > 0)) {
+        let newContextInfoText = `Your ${currentMokepon.name} has been downed! 
+        Calling in ${selectedMokepons[0].name} for help!`;
+        contextInfoElement.textContent = '';
+        const characters = newContextInfoText.split('');
+        for (let i = 0; i < characters.length; i++) {
+            setTimeout(() => {
+                contextInfoElement.textContent += characters[i];
+            }, i * 25);
+        }
+        selectedImage.classList.remove('you');
+        selectedImage.style.display = 'none';
+        currentMokepon = selectedMokepons[0]
+        playerDOMHPMupdate.textContent = currentMokepon.hp; // update health
+        playerMokeponElementM.textContent = currentMokepon.name; // update name
+        player_HP_beforeM = currentMokepon.hp;
+        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+        selectedImage.classList.add('you');
+        selectedImage.style.display = 'flex';
+        console.log(currentMokepon.hp)
+        isPlayerTurnM = false;
     }
 }
 
 // AI GAME LOGIC ///////////////////////////////////////////////////
 // AI attack selection function
-function AIAttackSelectionMultiplayer() {
-    if (!isPlayerTurnMultiplayer && (playerHPMultiplayer > 0 && ai_HPMultiplayer > 0) && currentMokepon != undefined) {
-        const AIAttacksMultiplayer = AI_currentMokepon.attacks;
-        let opponentType = AI_currentMokepon.type
-        let randomIndex = Math.floor(Math.random() * AIAttacksMultiplayer.length);
-        let attackMultiplayer = AIAttacksMultiplayer[randomIndex];
-        setTimeout(executeAIAttackMultiplayer(attackMultiplayer, opponentType), 2500)
+function AIAttackSelectionM() {
+    if (AI_currentMokepon.hp < 0) {
+        autoAiSwap()
+    } else if (!isPlayerTurnM && (playerHPM > 0 && ai_HPM > 0) && currentMokepon != undefined) {
+        const AIAttacksM = AI_currentMokepon.attacks;
+        let opponentType = currentMokepon.type
+        let randomIndex = Math.floor(Math.random() * AIAttacksM.length);
+        let attackM = AIAttacksM[randomIndex];
+        setTimeout(executeAIAttackMultiplayer(attackM, opponentType), 2500)
     }
 }
 
 // Execute attack selected for AI
-function executeAIAttackMultiplayer(attackMultiplayer, opponentType) {
+function executeAIAttackMultiplayer(attackM, opponentType) {
     // Calculate damage multiplier based on AI attack type and player's selected Mokepon type
-    let damageMultiplier = calculateDamageMultiplierMultiplayer(attackMultiplayer, opponentType);
-    let damage = attackMultiplayer.basePower * damageMultiplier;
+    let damageMultiplier = calculateDamageMultiplierM(attackM, opponentType);
+    let damage = attackM.basePower * damageMultiplier;
     let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
     let damageRound = Math.floor(damage * randomFactor);
 
     currentMokepon.hp -= damageRound
-    setTimeout(() => { checkGameOverMultiplayer(); }, 4000)
-
+    setTimeout(() => { checkGameOverM(); }, 4000)
 
     // show attack and damage information in context-info 
-    let newContextInfoText = `Your oponents ${AI_currentMokepon.name} attacks with: ${attackMultiplayer.name}! it deals ${damageRound} points of damage to your ${currentMokepon.name}!`;
+    let newContextInfoText = `Your oponents ${AI_currentMokepon.name} attacks with: ${attackM.name}!
+    It deals ${damageRound} points of damage to your ${currentMokepon.name}!`;
     contextInfoElement.textContent = '';
     const characters = newContextInfoText.split('');
     for (let i = 0; i < characters.length; i++) {
@@ -251,18 +264,15 @@ function executeAIAttackMultiplayer(attackMultiplayer, opponentType) {
             contextInfoElement.textContent += characters[i];
         }, i * 25);
     }
-
-    ai_AnimationMultiplayer() // animate attack
-    aiAttackAnimationMultiplayer(attackMultiplayer) // animate attack sprite
-    setTimeout(updateHPDOMElementMultiplayer(playerHPMultiplayer, 'you-status-hp'), 100);
-    isPlayerTurnMultiplayer = true;
-    return damageRound;
+    ai_AnimationM(attackM) // animate attack
+    setTimeout(updateHPDOMElementM(playerHPM, 'you-status-hp'), 100);
+    isPlayerTurnM = true;
 }
 
 // AI Animations when attacking 
-function ai_AnimationMultiplayer() {
+function ai_AnimationM(attackM) {
     const ai_selectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
-
+    const aiAttackImage = document.querySelector(`.ai-${attackM.type}-attack`)
 
     ai_selectedImage.style.transition = `transform 0.3s linear, transform 0.3s linear`; // Animate the sprite's transformation
     ai_selectedImage.style.transform = `translateX(-100px) translateY(-15px)`; // Animate the sprite to move to the right and slightly up
@@ -283,33 +293,195 @@ function ai_AnimationMultiplayer() {
             playerSelectedImage.style.filter = 'brightness(1)'; // Set opacity back to 1 to make the image visible
         }, 120);
     }, 200)
-}
 
-function aiAttackAnimationMultiplayer(attackMultiplayer) {
-    const aiAttackImage = document.querySelector(`.ai-${attackMultiplayer.type}-attack`)
-
-    if (attackMultiplayer.type != 'normal') {
-        fadeInAndOutMultiplayer(aiAttackImage);
+    if (attackM.type != 'normal') {
+        fadeInAndOutM(aiAttackImage);
     }
-
 }
 
+// function for auto swapping ai mokepon if downed
+const AI_DOMHPMupdate = document.querySelector('.oponent-status-hp h3');
 
-// DAMAGE MULTIPLIER FUNCTION AND HP STATUS UNPDATE ////////////////////////////////////////
+function autoAiSwap() {
+    let aiSelectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
+    if ((AI_currentMokepon == AI_selectedMokepons[0])
+        && (AI_currentMokepon.hp <= 0 && AI_selectedMokepons[1].hp > 0)) {
+        let newContextInfoText = `Your oponents ${AI_currentMokepon.name} has been downed! 
+        Your oponent calls in ${AI_selectedMokepons[1].name} to the fight!`;
+        contextInfoElement.textContent = '';
+        const characters = newContextInfoText.split('');
+        for (let i = 0; i < characters.length; i++) {
+            setTimeout(() => {
+                contextInfoElement.textContent += characters[i];
+            }, i * 25);
+        }
+        aiSelectedImage.classList.remove('oponent');
+        aiSelectedImage.style.display = 'none';
+        AI_currentMokepon = AI_selectedMokepons[1]
+        AI_DOMHPMupdate.textContent = AI_currentMokepon.hp; // update health
+        aiMokeponElementM.textContent = AI_currentMokepon.name; // update name
+        ai_HP_beforeM = AI_currentMokepon.hp;
+        aiSelectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
+        aiSelectedImage.classList.add('oponent');
+        aiSelectedImage.style.display = 'flex';
+        isPlayerTurnM = true;
+
+    } else if ((AI_currentMokepon == AI_selectedMokepons[1])
+        && (AI_currentMokepon.hp <= 0 && AI_selectedMokepons[0].hp > 0)) {
+        let newContextInfoText = `Your oponents ${AI_currentMokepon.name} has been downed! 
+        Your oponent calls in ${AI_selectedMokepons[0].name} to the fight!`;
+        contextInfoElement.textContent = '';
+        const characters = newContextInfoText.split('');
+        for (let i = 0; i < characters.length; i++) {
+            setTimeout(() => {
+                contextInfoElement.textContent += characters[i];
+            }, i * 25);
+        }
+        aiSelectedImage.classList.remove('oponent');
+        aiSelectedImage.style.display = 'none';
+        AI_currentMokepon = AI_selectedMokepons[0]
+        AI_DOMHPMupdate.textContent = AI_currentMokepon.hp; // update health
+        aiMokeponElementM.textContent = AI_currentMokepon.name; // update name
+        ai_HP_beforeM = AI_currentMokepon.hp;
+        aiSelectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
+        aiSelectedImage.classList.add('oponent');
+        aiSelectedImage.style.display = 'flex';
+        isPlayerTurnM = true;
+    }
+}
+
 // Damage multiplier calculator depending on attack type and against what mokepon it is used
-function calculateDamageMultiplierMultiplayer(attackMultiplayer, opponentType) {
-    let typeChartValue = typeChart[attackMultiplayer.type][opponentType]; // Get the damage multiplier value from the type chart
-
+function calculateDamageMultiplierM(attackM, opponentType) {
+    let typeChartValue = typeChart[attackM.type][opponentType]; // Get the damage multiplier value from the type chart
     return typeChartValue;
 }
 
-
 // Update hp number data each time the player or the AI takes damage
-let ai_HP_beforeMultiplayer = ai_HPMultiplayer;
-let player_HP_beforeMultiplayer = playerHPMultiplayer;
-let damageDealtMultiplayer = 0;
+let ai_HP_beforeM = ai_HPM;
+let player_HP_beforeM = playerHPM;
+let damageDealtM = 0;
 
-function fadeInAndOutMultiplayer(element) {
+const playerDOMHPM = document.querySelector('.you-status-hp h3');
+const AI_DOMHPM = document.querySelector('.oponent-status-hp h3');
+const pDamageTakenM = document.querySelector('.you-damage-taken');
+const aiDamageTakenM = document.querySelector('.oponent-damage-taken');
+
+function updateHPDOMElementM() {
+    if (isPlayerTurnM) {
+        damageDealtM = ai_HP_beforeM - AI_currentMokepon.hp;
+        aiDamageTakenM.textContent = `-${damageDealtM}`;
+        AI_DOMHPM.textContent = AI_currentMokepon.hp;
+        fadeInAndOutM(aiDamageTakenM); // Apply fade-in and fade-out effect to AI damageDealt
+        ai_HP_beforeM = AI_currentMokepon.hp; // Update ai_HP_before for the next turn
+    } else {
+        damageDealtM = player_HP_beforeM - currentMokepon.hp;
+        pDamageTakenM.textContent = `-${damageDealtM}`;
+        playerDOMHPM.textContent = currentMokepon.hp;
+        fadeInAndOutM(pDamageTakenM); // Apply fade-in and fade-out effect to AI damageDealt
+        player_HP_beforeM = currentMokepon.hp; // Update player_HP_before for the next turn
+    }
+};
+
+// check player and AI hp to determine game status
+function checkGameOverM() {
+    const endGameMenu = document.querySelector('.end-menu')
+    const endMenuTitle = document.querySelector('.end-menu-title')
+    const selectedImage = document.querySelector(`img[src="${currentMokepon.back_sprite}"]`);
+    const ai_selectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
+
+    if (selectedMokepons[0].hp <= 0 && selectedMokepons[1].hp <= 0) {
+        endGameMenu.style.display = 'flex'
+        endMenuTitle.textContent = 'You loose!'
+        selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
+        selectedImage.style.filter = "opacity(1)"
+    } else if (AI_selectedMokepons[0].hp <= 0 && AI_selectedMokepons[1].hp <= 0) {
+        endGameMenu.style.display = 'flex'
+        endMenuTitle.textContent = 'You Win!'
+        ai_selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
+        ai_selectedImage.style.filter = "opacity(1)"
+    }
+}
+
+
+const playerDOMHPMupdate = document.querySelector('.you-status-hp h3');
+
+function SwapMokeponButtonM() {
+    let selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+    if ((selectedMokepons[1].hp > 0 && selectedMokepons[0].hp > 0)
+        && (currentMokepon === selectedMokepons[0])) {
+
+        let newContextInfoText = `Your ${currentMokepon.name} retreats! You call in ${selectedMokepons[1].name} for help!`;
+        contextInfoElement.textContent = '';
+        const characters = newContextInfoText.split('');
+        for (let i = 0; i < characters.length; i++) {
+            setTimeout(() => {
+                contextInfoElement.textContent += characters[i];
+            }, i * 25);
+        }
+
+        selectedImage.classList.remove('you');
+        selectedImage.style.display = 'none';
+        currentMokepon = selectedMokepons[1]
+        playerDOMHPMupdate.textContent = currentMokepon.hp; // update health
+        playerMokeponElementM.textContent = currentMokepon.name;
+        player_HP_beforeM = currentMokepon.hp; // update name
+        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+        selectedImage.classList.add('you');
+        selectedImage.style.display = 'flex';
+
+    } else if ((selectedMokepons[1].hp > 0 && selectedMokepons[0].hp > 0)
+        && (currentMokepon === selectedMokepons[1])) {
+
+        let newContextInfoText = `Your ${currentMokepon.name} retreats! You call in ${selectedMokepons[0].name} for help!`;
+        contextInfoElement.textContent = '';
+        const characters = newContextInfoText.split('');
+        for (let i = 0; i < characters.length; i++) {
+            setTimeout(() => {
+                contextInfoElement.textContent += characters[i];
+            }, i * 25);
+        }
+
+        selectedImage.classList.remove('you');
+        selectedImage.style.display = 'none';
+        currentMokepon = selectedMokepons[0]
+        playerDOMHPMupdate.textContent = currentMokepon.hp; // update health
+        playerMokeponElementM.textContent = currentMokepon.name;
+        player_HP_beforeM = currentMokepon.hp; // update name
+        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
+        selectedImage.classList.add('you');
+        selectedImage.style.display = 'flex';
+    }
+    isPlayerTurnM = false
+}
+
+function disableAllButtonsM(buttons) {
+    for (const button of buttons) {
+        SwapMokeponBtn.classList.add('disabled');
+        SwapMokeponBtn.style.backgroundColor = '#808080'; //dark gray
+        SwapMokeponBtn.disabled = true; // Make the button fully unclickable
+        button.classList.add('disabled');
+        button.style.backgroundColor = '#808080'; //dark gray
+        button.disabled = true; // Make the button fully unclickable
+    }
+}
+
+function enableAllButtonsM(buttons) {
+    setTimeout(() => {
+        for (const button of buttons) {
+            button.classList.remove('disabled');
+            if (currentMokepon != undefined) {
+                autoplayerSwap() // check if mokepon died, if so change mokepon
+                populateAttackButtonsM();
+                AttackButtonColorsM(); // Retrieve attack colors for buttons
+                SwapMokeponBtn.style.background = 'white'
+            }
+            button.disabled = false; // Make the button fully unclickable
+            SwapMokeponBtn.disabled = false; // Make the button fully unclickable
+        }
+    }, 8500);// enable after seven seconds
+}
+
+function fadeInAndOutM(element) {
     element.style.display = 'flex';
 
     // Set opacity to 0 and set transition duration to 1 second
@@ -324,80 +496,3 @@ function fadeInAndOutMultiplayer(element) {
         element.style.opacity = '0';
     }, 1500);
 }
-
-function updateHPDOMElementMultiplayer() {
-    const playerDOMHP = document.querySelector('.you-status-hp h3');
-    const AI_DOMHP = document.querySelector('.oponent-status-hp h3');
-    const pDamageTaken = document.querySelector('.you-damage-taken');
-    const aiDamageTaken = document.querySelector('.oponent-damage-taken');
-
-
-    if (isPlayerTurnMultiplayer) {
-        damageDealt = ai_HP_beforeMultiplayer - AI_currentMokepon.hp;
-        aiDamageTaken.textContent = `-${damageDealt}`;
-        AI_DOMHP.textContent = AI_currentMokepon.hp;
-        fadeInAndOutMultiplayer(aiDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
-        ai_HP_beforeMultiplayer = AI_currentMokepon.hp; // Update ai_HP_before for the next turn
-    } else {
-        damageDealt = player_HP_beforeMultiplayer - currentMokepon.hp;
-        pDamageTaken.textContent = `-${damageDealt}`;
-        playerDOMHP.textContent = currentMokepon.hp;
-        fadeInAndOutMultiplayer(pDamageTaken); // Apply fade-in and fade-out effect to AI damageDealt
-        player_HP_beforeMultiplayer = currentMokepon.hp; // Update player_HP_before for the next turn
-    }
-};
-
-function checkGameOverMultiplayer() {
-    console.log(selectedMokepons[0].hp)
-    if (selectedMokepons[0].hp <= 0 && selectedMokepons[1].hp <= 0) {
-        const endGameMenu = document.querySelector('.end-menu')
-        const endMenuTitle = document.querySelector('.end-menu-title')
-        const selectedImage = document.querySelector(`img[src="${currentMokepon.back_sprite}"]`);
-
-
-        endGameMenu.style.display = 'flex'
-        endMenuTitle.textContent = 'You loose!'
-        selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
-        selectedImage.style.filter = "opacity(1)"
-
-
-    } else if (AI_selectedMokepons[0].hp <= 0 && AI_selectedMokepons[1].hp <= 0) {
-        const endGameMenu = document.querySelector('.end-menu')
-        const endMenuTitle = document.querySelector('.end-menu-title')
-        const ai_selectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
-
-
-        endGameMenu.style.display = 'flex'
-        endMenuTitle.textContent = 'You Win!'
-        ai_selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
-        ai_selectedImage.style.filter = "opacity(1)"
-    }
-}
-
-function SwapMokepon() {
-    let selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
-    if ((selectedMokepons[1].hp > 0 && selectedMokepons[0].hp > 0)
-        && (currentMokepon === selectedMokepons[0])) {
-        selectedImage.classList.remove('you');
-        selectedImage.style.display = 'none';
-
-        currentMokepon = selectedMokepons[1]
-        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
-        selectedImage.classList.add('you');
-        selectedImage.style.display = 'flex';
-
-    } else if ((selectedMokepons[1].hp > 0 && selectedMokepons[0].hp > 0)
-        && (currentMokepon === selectedMokepons[1])) {
-        selectedImage.classList.remove('you');
-        selectedImage.style.display = 'none';
-
-        currentMokepon = selectedMokepons[0]
-        selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
-        selectedImage.classList.add('you');
-        selectedImage.style.display = 'flex';
-    }
-    isPlayerTurnMultiplayer = false
-}
-
-
-

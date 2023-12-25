@@ -18,7 +18,7 @@ nextMenuButton.addEventListener('click', () => {
     bottomInfo.classList.add('fade-in');
     playerMokeponElement.textContent = selectedMokepon.name;
     contextInfoElement.textContent = `You choose ${selectedMokepon.name}!`;
-    AI_computerSelectMokepon(); // AI sprite appear function
+    AI_computerSelectMokepon(); // AI random Mokepon sprite appear function
 });
 
 
@@ -28,14 +28,18 @@ const SwapMokeponBtn = document.querySelector('#swap-btn');
 
 const populateAttackButtons = () => {
     for (let i = 0; i < attackButtons.length; i++) {
-        const attack = selectedMokepon.attacks[i];
-        attackButtons[i].textContent = attack.name;
+        if (selectedMokepon != null) {
+            const attack = selectedMokepon.attacks[i];
+            attackButtons[i].textContent = attack.name;
+        }
     }
 };
 const AttackButtonColors = () => {
     for (let i = 0; i < attackButtons.length; i++) {
-        const color = selectedMokepon.attacks[i].color;
-        attackButtons[i].style.backgroundColor = color;
+        if (selectedMokepon != null) {
+            const color = selectedMokepon.attacks[i].color;
+            attackButtons[i].style.backgroundColor = color;
+        }
     }
 };
 
@@ -51,7 +55,7 @@ document.querySelectorAll('.mokepon-selection-button').forEach((button) => {
 
 
 // SECTION FOR AI MOKEPON SELECTION
-// Initialize variable to store the AI's selected Mokepon object
+// AI random Mokepon selection Function
 const aiMokeponElement = document.querySelector('.oponent-status h2');
 
 function AI_computerSelectMokepon() {
@@ -190,7 +194,6 @@ function executeAIAttack(attack, opponentType) {
     ai_Animation(attack) // animate attack
     setTimeout(updateHPDOMElement(playerHP, 'you-status-hp'), 100);
     isPlayerTurn = true;
-    // return damageRound;
 }
 
 // AI Animations when attacking 
@@ -223,11 +226,10 @@ function ai_Animation(attack) {
     }
 }
 
+
 // Damage multiplier calculator depending on attack type and against what mokepon it is used
 function calculateDamageMultiplier(attack, opponentType) {
-
     let typeChartValue = typeChart[attack.type][opponentType]; // Get the damage multiplier value from the type chart
-
     return typeChartValue;
 }
 
@@ -291,7 +293,7 @@ function enableAllButtons(buttons) {
     setTimeout(() => {
         for (const button of buttons) {
             button.classList.remove('disabled');
-            if (selectedMokepon != undefined) {
+            if (selectedMokepon != null) {
                 AttackButtonColors() // Retrieve attack colors for buttons
                 SwapMokeponBtn.style.background = 'white'
             }

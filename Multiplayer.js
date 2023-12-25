@@ -29,8 +29,6 @@ mokeponButtonsMultiplayer.forEach((button) => {
 
 nextButtonMultiplayer.addEventListener('click', () => {
     const selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
-    const SwapMokeponBtn = document.getElementById('swap-btn')
-
     currentMokepon = selectedMokepons[0];
     SwapMokeponBtn.style.display = 'flex';
     selectedImage.classList.add('you');
@@ -122,7 +120,6 @@ let playerHPMultiplayer = 100;
 let ai_HPMultiplayer = 100;
 
 
-const SwapMokeponBtn = document.querySelector('#swap-btn')
 SwapMokeponBtn.addEventListener('click', () => {
     SwapMokepon()
     setTimeout(AIAttackSelectionMultiplayer, 4000);

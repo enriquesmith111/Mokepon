@@ -50,6 +50,16 @@ for (const button of buttons) {
     });
 };
 
+// Add event listeners to Menu Mokepon buttons
+const mokeponButtons = document.querySelectorAll('.mokepon-selection-button');
+mokeponButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const mokeponName = button.id.split('-')[0];
+        selectedMokepon = mokepons[mokeponName];
+        console.log(selectedMokepon)
+    });
+});
+
 
 // MULTIPLAYER MENU BUTTONS
 multiplayerButton.addEventListener('click', () => {

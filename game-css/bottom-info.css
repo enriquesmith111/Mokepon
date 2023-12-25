@@ -84,7 +84,7 @@
 }
 
 #swap-btn {
-    display: none;
+    display: flex;
 }
 
 #swap-btn:hover {

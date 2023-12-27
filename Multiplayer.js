@@ -14,7 +14,7 @@ const playerMokeponElementM = document.querySelector('.you-status h2');
 nextButtonMultiplayer.addEventListener('click', () => {
     const selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
     currentMokepon = selectedMokepons[0]; // first chosen Mokepon becomes current 
-    SwapMokeponBtn.style.display = 'flex'; // show swap btn in multiplayer mode
+    SwapMokeponBtnM.style.display = 'flex'; // show swap btn in multiplayer mode
     selectedImage.classList.add('you');
     selectedImage.style.display = 'flex';
     secondMenuMultiplayer.style.display = 'none';
@@ -40,10 +40,12 @@ const populateAttackButtonsM = () => {
 
 // change attack buttons colors to ones corresponding to Mokepon attack
 const AttackButtonColorsM = () => {
-    const attackButtonsM = document.querySelectorAll('.attack-btn');
-    for (let i = 0; i < attackButtonsM.length; i++) {
-        const color = currentMokepon.attacks[i].color;
-        attackButtonsM[i].style.backgroundColor = color;
+    if (currentMokepon.hp > 0) {
+        const attackButtonsM = document.querySelectorAll('.attack-btn');
+        for (let i = 0; i < attackButtonsM.length; i++) {
+            const color = currentMokepon.attacks[i].color;
+            attackButtonsM[i].style.backgroundColor = color;
+        }
     }
 };
 
@@ -105,7 +107,9 @@ for (let i = 0; i < attackButtonsArray.length; i++) {
     const attackButtonM = attackButtonsArray[i];
     attackButtonM.addEventListener('click', () => {
         disableAllButtonsM(attackButtonsArrayM);
-        enableAllButtonsM(attackButtonsArrayM);
+        if (currentMokepon.hp > 0) {
+            enableAllButtonsM(attackButtonsArrayM)
+        }
         if (currentMokepon != undefined) {
             let attackM = currentMokepon.attacks[i];
             executePlayerAttackM(attackM);
@@ -118,36 +122,40 @@ for (let i = 0; i < attackButtonsArray.length; i++) {
 SwapMokeponBtn.addEventListener('click', () => {
     SwapMokeponButtonM()
     disableAllButtonsM(attackButtonsArrayM)
-    enableAllButtonsM(attackButtonsArrayM)
+    if (currentMokepon.hp > 0) {
+        enableAllButtonsM(attackButtonsArrayM)
+    }
     setTimeout(AIAttackSelectionM, 4000);
 })
 
 
 // Execute attack selected by player
 function executePlayerAttackM(attackM) {
-    let opponentType = AI_currentMokepon.type
-    let damageMultiplier = calculateDamageMultiplierM(attackM, opponentType);
-    let damage = attackM.basePower * damageMultiplier;
-    let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
-    let damageRound = Math.floor(damage * randomFactor);
+    if (currentMokepon.hp > 0) {
+        let opponentType = AI_currentMokepon.type
+        let damageMultiplier = calculateDamageMultiplierM(attackM, opponentType);
+        let damage = attackM.basePower * damageMultiplier;
+        let randomFactor = Math.random() * (1.4 - 0.8) + 0.8;
+        let damageRound = Math.floor(damage * randomFactor);
 
-    AI_currentMokepon.hp -= damageRound;
-    setTimeout(() => { checkGameOverM(); }, 4000)
+        AI_currentMokepon.hp -= damageRound;
+        setTimeout(() => { checkGameOverM(); }, 4000)
 
-    // Show attack and damage information in context-info 
-    let newContextInfoText = `Your ${currentMokepon.name} attacks with: ${attackM.name}!
+        // Show attack and damage information in context-info 
+        let newContextInfoText = `Your ${currentMokepon.name} attacks with: ${attackM.name}!
     It deals ${damageRound} points of damage to your oponents ${AI_currentMokepon.name}!`;
-    contextInfoElement.textContent = '';
-    const characters = newContextInfoText.split('');
+        contextInfoElement.textContent = '';
+        const characters = newContextInfoText.split('');
 
-    for (let i = 0; i < characters.length; i++) {
-        setTimeout(() => {
-            contextInfoElement.textContent += characters[i];
-        }, i * 25);
-    };
-    playerAnimationM(attackM); // animate attack
-    setTimeout(updateHPDOMElementM(ai_HPM, 'oponent-status-hp')), 100;
-    isPlayerTurnM = false; // Set isPlayerTurn to false
+        for (let i = 0; i < characters.length; i++) {
+            setTimeout(() => {
+                contextInfoElement.textContent += characters[i];
+            }, i * 25);
+        };
+        playerAnimationM(attackM); // animate attack
+        setTimeout(updateHPDOMElementM(ai_HPM, 'oponent-status-hp')), 100;
+        isPlayerTurnM = false; // Set isPlayerTurn to false
+    }
 }
 
 // Player Animations when attacking 
@@ -184,7 +192,7 @@ function forceplayerSwap() {
         && (currentMokepon.hp <= 0 && selectedMokepons[1].hp > 0)) {
 
         let newContextInfoText = `Your ${currentMokepon.name} has been downed! 
-        Calling in another Mokepon for help!`;
+        Call in another Mokepon for help!`;
         contextInfoElement.textContent = '';
         const characters = newContextInfoText.split('');
         for (let i = 0; i < characters.length; i++) {
@@ -192,21 +200,19 @@ function forceplayerSwap() {
                 contextInfoElement.textContent += characters[i];
             }, i * 25);
 
-            const playerAttackButtonsMultiplayer = document.querySelectorAll('.attack-btn');
-            for (let i = 0; i < playerAttackButtonsMultiplayer.length; i++) {
-                const attackButtonMultiplayer = playerAttackButtonsMultiplayer[i];
-                console.log(attackButtonMultiplayer)
-                // Disable all attack buttons
-                for (const button of playerAttackButtonsMultiplayer) {
-                    button.classList.add('disabled');
-                    button.style.backgroundColor = '#808080'; //dark gray
-                    button.disabled = true; // Make the button fully unclickable
+            disableAllButtonsM(attackButtonsArrayM)
+            SwapMokeponBtn.classList.remove('disabled');
+            SwapMokeponBtn.style.backgroundColor = 'white'; //dark gray
+            SwapMokeponBtn.disabled = false; // Make the button fully unclickable
+            SwapMokeponBtn.addEventListener('click', () => {
+                SwapMokeponButtonM()
+                disableAllButtonsM(attackButtonsArrayM)
+                if (currentMokepon.hp > 0) {
+                    enableAllButtonsM(attackButtonsArrayM)
                 }
-
-            }
-
+                setTimeout(AIAttackSelectionM, 4000);
+            })
         }
-
     } else if ((currentMokepon == selectedMokepons[1])
         && (currentMokepon.hp <= 0 && selectedMokepons[0].hp > 0)) {
 
@@ -219,7 +225,18 @@ function forceplayerSwap() {
                 contextInfoElement.textContent += characters[i];
             }, i * 25);
 
-            enableAllButtonsM(attackButtonsArrayM);
+            disableAllButtonsM(attackButtonsArrayM)
+            SwapMokeponBtn.classList.remove('disabled');
+            SwapMokeponBtn.style.backgroundColor = 'white'; //dark gray
+            SwapMokeponBtn.disabled = false; // Make the button fully unclickable
+            SwapMokeponBtn.addEventListener('click', () => {
+                SwapMokeponButtonM()
+                disableAllButtonsM(attackButtonsArrayM)
+                if (currentMokepon.hp > 0) {
+                    enableAllButtonsM(attackButtonsArrayM)
+                }
+                setTimeout(AIAttackSelectionM, 4000);
+            })
         }
     }
 }
@@ -390,11 +407,13 @@ function checkGameOverM() {
     const ai_selectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
 
     if (selectedMokepons[0].hp <= 0 && selectedMokepons[1].hp <= 0) {
+        disableAllButtonsM(attackButtonsArrayM);
         endGameMenu.style.display = 'flex'
         endMenuTitle.textContent = 'You loose!'
         selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
         selectedImage.style.filter = "opacity(1)"
     } else if (AI_selectedMokepons[0].hp <= 0 && AI_selectedMokepons[1].hp <= 0) {
+        disableAllButtonsM(attackButtonsArrayM);
         endGameMenu.style.display = 'flex'
         endMenuTitle.textContent = 'You Win!'
         ai_selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
@@ -407,7 +426,7 @@ const playerDOMHPMupdate = document.querySelector('.you-status-hp h3');
 
 function SwapMokeponButtonM() {
     let selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
-    if ((selectedMokepons[1].hp > 0 && selectedMokepons[0].hp > 0)
+    if ((selectedMokepons[1].hp > 0)
         && (currentMokepon === selectedMokepons[0])) {
 
         let newContextInfoText = `Your ${currentMokepon.name} retreats! 
@@ -430,7 +449,7 @@ function SwapMokeponButtonM() {
         selectedImage.classList.add('you');
         selectedImage.style.display = 'flex';
 
-    } else if ((selectedMokepons[1].hp > 0 && selectedMokepons[0].hp > 0)
+    } else if ((selectedMokepons[0].hp > 0)
         && (currentMokepon === selectedMokepons[1])) {
 
         let newContextInfoText = `Your ${currentMokepon.name} retreats! You call in ${selectedMokepons[0].name} for help!`;
@@ -467,19 +486,21 @@ function disableAllButtonsM(buttons) {
 }
 
 function enableAllButtonsM(buttons) {
-    setTimeout(() => {
-        for (const button of buttons) {
-            button.classList.remove('disabled');
-            if (currentMokepon != undefined) {
-                player_HP_beforeM = currentMokepon.hp
-                populateAttackButtonsM();
-                AttackButtonColorsM(); // Retrieve attack colors for buttons
-                SwapMokeponBtn.style.background = 'white'
+    if (currentMokepon.hp > 0) {
+        setTimeout(() => {
+            for (const button of buttons) {
+                button.classList.remove('disabled');
+                if (currentMokepon != undefined) {
+                    player_HP_beforeM = currentMokepon.hp
+                    populateAttackButtonsM();
+                    AttackButtonColorsM(); // Retrieve attack colors for buttons
+                    SwapMokeponBtn.style.background = 'white'
+                }
+                button.disabled = false; // Make the button fully unclickable
+                SwapMokeponBtn.disabled = false; // Make the button fully unclickable
             }
-            button.disabled = false; // Make the button fully unclickable
-            SwapMokeponBtn.disabled = false; // Make the button fully unclickable
-        }
-    }, 8500);// enable after seven seconds
+        }, 7000);// enable after seven seconds
+    }
 }
 
 function fadeInAndOutM(element) {
@@ -497,3 +518,9 @@ function fadeInAndOutM(element) {
         element.style.opacity = '0';
     }, 1500);
 }
+
+
+
+// fix issue with if player and ai have the same mokepon sometimes the damage taken and given get mixed up and both end up getitng
+// hp damage, i think is because they are both being saved to each corresponding array but using the same 
+// instance of the mokepon object, check online to make sure

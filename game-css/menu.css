@@ -202,9 +202,7 @@
     height: 160px;
     background-color: bisque;
     transition: transform 0.2s ease-in-out;
-}
-
-@media screen and (max-height: 430px) {
+}   @media screen and (max-height: 430px) {
     .mokepon-selection-button {
         width: 110px;
         height: 125px;
@@ -315,40 +313,140 @@
     border: solid black 2px;
     border-radius: 2%;
 }   @media screen and (max-height: 430px) {
-        .second-menu {
+        .second-menu-multiplayer {
             top: 43%;
             height: 350px;
             width: 500px;
         }
 }
 
-/* mokepon type texts */
-
+/* mokepon type texts and images for buttons */
+/* electric mokepon */
 .electric-text-multiplayer {
     margin-top: -25px;
     border: solid yellow 2px;
     background-color: rgba(255, 255, 0, 0.514);
+}   @media screen and (max-height: 430px) {
+        .electric-text-multiplayer {
+            margin-top: 0px;
+        }
 }
 
+.beedrill-btn-image-multiplayer {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .beedrill-btn-image-multiplayer {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+.pikachu-btn-image-multiplayer {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .pikachu-btn-image-multiplayer {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+/* water mokepon */
 .water-text-multiplayer {
     margin-top: -25px;
     border: solid darkturquoise 2px;
     background-color: rgb(0, 187, 190);
-} 
+}   @media screen and (max-height: 430px) {
+        .water-text-multiplayer {
+            margin-top: 0px;
+        }
+}
 
+.bulbasaur-btn-image-multiplayer {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .bulbasaur-btn-image-multiplayer {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+.wartortle-btn-image-multiplayer {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .wartortle-btn-image-multiplayer{
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+/* grass mokepon */
 .grass-text-multiplayer {
     margin-top: -25px;
     border: solid green 2px;
     background-color: rgba(0, 128, 0, 0.692);
-} 
+}   @media screen and (max-height: 430px) {
+        .grass-text-multiplayer {
+            margin-top: 0px;
+        }
+}
 
+.caterpie-btn-image-multiplayer {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .caterpie-btn-image-multiplayer {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+.kricketune-btn-image-multiplayer {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .kricketune-btn-image-multiplayer {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+/* fire mokepon */
 .fire-text-multiplayer {
     margin-top: -25px;
     border: solid red 2px;
     background-color: rgba(255, 0, 0, 0.703);
-} 
+}   @media screen and (max-height: 430px) {
+        .fire-text-multiplayer {
+            margin-top: 0px;
+        }
+}
 
-/* actual mokepon selection buttons for multiplayer */
+.charizard-btn-image-multiplayer {
+    margin-top: 5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .charizard-btn-image-multiplayer {
+            margin-top: -15px;
+            scale: 1.2;
+        }
+}
+
+.rapidash-btn-image-multiplayer {
+    margin-top: -5px;
+    scale: 2;
+}   @media screen and (max-height: 430px) {
+        .rapidash-btn-image-multiplayer {
+            margin-top: -15px;
+            scale: 1.5;
+        }
+}
+
+
+/* actual mokepon selection buttons */
 
 .mokepon-selection-multiplayer {
     display: flex;
@@ -361,6 +459,11 @@
     height: 160px;
     background-color: bisque;
     transition: transform 0.2s ease-in-out;
+}   @media screen and (max-height: 430px) {
+    .mokepon-selection-button-multiplayer {
+        width: 110px;
+        height: 125px;
+    }
 }
 
 .mokepon-selection-button-multiplayer:hover {
@@ -371,8 +474,12 @@
     transform: scale(0.5);
 }
 
-/* next and back buttons for multiplayer player */
+.clicked-multiplayer {
+    background-color: rgb(255, 175, 77);
+    color: white;
+}
 
+/* next and back buttons for single player */
 
 .next-and-back-btn-multiplayer {
     width: 90%;
@@ -404,11 +511,6 @@
 
 .back-menu-button-multiplayer:active {
     transform: scale(0.9);
-}
-
-.clicked-multiplayer {
-    background-color: rgb(255, 175, 77);
-    color: white;
 }
 
 

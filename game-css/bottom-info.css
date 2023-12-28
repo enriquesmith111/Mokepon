@@ -54,6 +54,11 @@
     height: 120px;
     display: flex;
     align-items: center;
+}   @media screen and (max-height: 430px) {
+    .four-attack-buttons {
+        width: 200px;
+        margin-right: 100px;
+    }
 }
 
 .two-attack-buttons {
@@ -72,6 +77,7 @@
 }   @media screen and (max-height: 430px) {
     .attack-btn {
         height: 50px;
+        width: 150px;
     }
 }
 

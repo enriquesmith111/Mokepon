@@ -4,7 +4,7 @@ const mokepons = {
         sprite: "components/sprites/beedrill.gif",
         back_sprite: "components/sprites/beedrill-back.gif",
         type: 'electric',
-        hp: 20,
+        hp: 100,
         attacks: [
             { name: 'Electric Jab', type: 'electric', color: 'khaki', basePower: 10 },
             { name: 'Twister', type: 'normal', color: 'white', basePower: 8 },
@@ -17,7 +17,7 @@ const mokepons = {
         sprite: "components/sprites/bulbasaur.gif",
         back_sprite: "components/sprites/bulbasaur-back.gif",
         type: 'water',
-        hp: 20,
+        hp: 100,
         attacks: [
             { name: 'Water Whip', type: 'water', color: 'darkturquoise', basePower: 10 },
             { name: 'Growl', type: 'normal', color: 'white', basePower: 8 },
@@ -30,7 +30,7 @@ const mokepons = {
         sprite: "components/sprites/caterpie.gif",
         back_sprite: "components/sprites/caterpie-back.gif",
         type: 'grass',
-        hp: 20,
+        hp: 100,
         attacks: [
             { name: 'Tackle', type: 'normal', color: 'white', basePower: 8 },
             { name: 'Leaf Shot', type: 'grass', color: 'mediumseagreen', basePower: 10 },
@@ -43,7 +43,7 @@ const mokepons = {
         sprite: "components/sprites/charizard.gif",
         back_sprite: "components/sprites/charizard-back.gif",
         type: 'fire',
-        hp: 20,
+        hp: 100,
         attacks: [
             { name: 'Flamethrower', type: 'fire', color: 'crimson', basePower: 10 },
             { name: 'Air Slash', type: 'normal', color: 'white', basePower: 8 },
@@ -56,7 +56,7 @@ const mokepons = {
         sprite: "components/sprites/kricketune.gif",
         back_sprite: "components/sprites/kricketune-back.gif",
         type: 'grass',
-        hp: 20,
+        hp: 100,
         attacks: [
             { name: 'Tackle', type: 'normal', color: 'white', basePower: 8 },
             { name: 'Leaf Shot', type: 'grass', color: 'mediumseagreen', basePower: 10 },
@@ -69,7 +69,7 @@ const mokepons = {
         sprite: "components/sprites/pikachu.gif",
         back_sprite: "components/sprites/pikachu-back.gif",
         type: 'electric',
-        hp: 20,
+        hp: 100,
         attacks: [
             { name: 'Electric Jab', type: 'electric', color: 'khaki', basePower: 10 },
             { name: 'Twister', type: 'normal', color: 'white', basePower: 8 },
@@ -82,7 +82,7 @@ const mokepons = {
         sprite: "components/sprites/rapidash.gif",
         back_sprite: "components/sprites/rapidash-back.gif",
         type: 'fire',
-        hp: 20,
+        hp: 100,
         attacks: [
             { name: 'Flamethrower', type: 'fire', color: 'crimson', basePower: 10 },
             { name: 'Air Slash', type: 'normal', color: 'white', basePower: 8 },
@@ -95,7 +95,7 @@ const mokepons = {
         sprite: "components/sprites/wartortle.gif",
         back_sprite: "components/sprites/wartortle-back.gif",
         type: 'water',
-        hp: 20,
+        hp: 100,
         attacks: [
             { name: 'Water Whip', type: 'water', color: 'darkturquoise', basePower: 10 },
             { name: 'Growl', type: 'normal', color: 'white', basePower: 8 },
@@ -104,3 +104,5 @@ const mokepons = {
         ]
     }
 };
+
+const AI_mokepons = JSON.parse(JSON.stringify(mokepons));

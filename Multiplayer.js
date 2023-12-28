@@ -62,7 +62,7 @@ document.querySelectorAll('.mokepon-selection-button-multiplayer').forEach((butt
 const aiMokeponElementM = document.querySelector('.oponent-status h2');
 
 function AI_computerSelectMokeponM() {
-    const mokeponNames = Object.keys(mokepons); // Extract an array of Mokepon names
+    const mokeponNames = Object.keys(AI_mokepons); // Extract an array of Mokepon names
     // Select two random Mokepons
     let randomIndex1 = Math.floor(Math.random() * mokeponNames.length);
     let selectedMokeponName1 = mokeponNames[randomIndex1];
@@ -74,8 +74,8 @@ function AI_computerSelectMokeponM() {
         selectedMokeponName2 = mokeponNames[randomIndex2];
     }
 
-    const ai_selectedMokepon1 = mokepons[selectedMokeponName1];
-    const ai_selectedMokepon2 = mokepons[selectedMokeponName2];
+    const ai_selectedMokepon1 = AI_mokepons[selectedMokeponName1];
+    const ai_selectedMokepon2 = AI_mokepons[selectedMokeponName2];
 
     // Store the selected Mokepons in the array
     AI_selectedMokepons = [ai_selectedMokepon1, ai_selectedMokepon2]; // Store the AI's selected Mokepon object
@@ -93,18 +93,18 @@ function AI_computerSelectMokeponM() {
 // Turn-based logic data
 let attackM = null;
 let isPlayerTurnM = true;
-let playerHPM = 20;
-let ai_HPM = 20;
+let playerHPM = 100;
+let ai_HPM = 100;
 
 
 // PLAYER GAME LOGIC ///////////////////////////////////////////////////
 // Handle player attack selection
 const playerAttackButtonsM = document.querySelectorAll('.attack-btn');
-const attackButtonsArrayM = Array.from(playerAttackButtons);
+const attackButtonsArrayM = Array.from(playerAttackButtonsM);
 // check if mokepon died, if so change mokepon
 
-for (let i = 0; i < attackButtonsArray.length; i++) {
-    const attackButtonM = attackButtonsArray[i];
+for (let i = 0; i < attackButtonsArrayM.length; i++) {
+    const attackButtonM = attackButtonsArrayM[i];
     attackButtonM.addEventListener('click', () => {
         disableAllButtonsM(attackButtonsArrayM);
         if (currentMokepon.hp > 0) {
@@ -119,7 +119,7 @@ for (let i = 0; i < attackButtonsArray.length; i++) {
     });
 }
 
-SwapMokeponBtn.addEventListener('click', () => {
+SwapMokeponBtnM.addEventListener('click', () => {
     SwapMokeponButtonM()
     disableAllButtonsM(attackButtonsArrayM)
     if (currentMokepon.hp > 0) {
@@ -188,8 +188,13 @@ function playerAnimationM(attackM) {
 }
 
 function forceplayerSwap() {
+    const selectedImage = document.querySelector(`img[src="${currentMokepon.back_sprite}"]`);
+
     if ((currentMokepon == selectedMokepons[0])
         && (currentMokepon.hp <= 0 && selectedMokepons[1].hp > 0)) {
+
+        selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
+        selectedImage.style.filter = "opacity(1)"
 
         let newContextInfoText = `Your ${currentMokepon.name} has been downed! 
         Call in another Mokepon for help!`;
@@ -201,10 +206,10 @@ function forceplayerSwap() {
             }, i * 25);
 
             disableAllButtonsM(attackButtonsArrayM)
-            SwapMokeponBtn.classList.remove('disabled');
-            SwapMokeponBtn.style.backgroundColor = 'white'; //dark gray
-            SwapMokeponBtn.disabled = false; // Make the button fully unclickable
-            SwapMokeponBtn.addEventListener('click', () => {
+            SwapMokeponBtnM.classList.remove('disabled');
+            SwapMokeponBtnM.style.backgroundColor = 'white'; //dark gray
+            SwapMokeponBtnM.disabled = false; // Make the button fully unclickable
+            SwapMokeponBtnM.addEventListener('click', () => {
                 SwapMokeponButtonM()
                 disableAllButtonsM(attackButtonsArrayM)
                 if (currentMokepon.hp > 0) {
@@ -215,6 +220,9 @@ function forceplayerSwap() {
         }
     } else if ((currentMokepon == selectedMokepons[1])
         && (currentMokepon.hp <= 0 && selectedMokepons[0].hp > 0)) {
+
+        selectedImage.style.animation = `fadeOut 2s ease-in-out forwards`;
+        selectedImage.style.filter = "opacity(1)"
 
         let newContextInfoText = `Your ${currentMokepon.name} has been downed! 
         Calling in $another Mokepon for help!`;

@@ -107,15 +107,41 @@
         Game Selection
     </h1>
     <button id="singleplayer-btn" class="menu-button pixel-corners">
-        <p>single player</p>
+        <p>Single Battle</p>
     </button>
     <button id="multiplayer-btn" class="menu-button pixel-corners">
-        <p>multiplayer</p>
-        <p style="font-size: 12px; color: grey;">*comming soon*</p>
+        <p>Double Battle</p>
     </button>
-    <button class="menu-button pixel-corners">
-        <p>info for geeks</p>
+    <button id="info-button" class="menu-button pixel-corners">
+        <p>Info for geeks</p>
     </button>
+</div>
+
+<div class="info-for-geeks pixel-corners">
+
+    <div class="game-rules">
+        <h2>My Javascript Project</h2>
+    </div>
+    
+    <div class="project-description">
+        <h3>Key Features:</h3>
+        <p>Choose from a vibrant roster of Mokepon, each with unique types, attacks, and sprites.</p>
+        <p>Test your skills against a strategic AI in single-player and 2v2 mode.</p>
+        <h3>Visually Appealing Interface:</h3>
+        <p>Engage with a visually captivating game board featuring dynamic animations for attacks and Mokepon health bars.</p>
+        <p>Receive live information text about the game just like in the original Pokemon games</p>
+        <p>Navigate intuitive menus and access crucial game information with ease.</p>
+        <h3>Javascript Logic</h3>
+        <p>Enables player interaction and response to game events through JavaScript.</p>
+        <p>Handles core game mechanics, from turn-based combat logic to AI decision-making.</p>
+        <p>Implements type effectiveness calculations for strategic depth.</p>
+        <h3>HTML Structure</h3>
+        <p>Constructs the foundation of the game's visual elements and interactive components.</p>
+        <h3>CSS Styling</h3>
+        <p>Responsive CSS optimized for both Desktop and mobile phones.</p>
+        <p>Sprite styling  --  Menu design  --  Battle and Attack animations  --  Health bar representations</p>
+    </div>
+    
 </div>
 
 <!-- Mokepon selection menu -->
@@ -183,50 +209,50 @@
 <div class="second-menu-multiplayer pixel-corners">
     <div>
         <h2 style="margin: 0 0 0 0;">
-            choose your Mokepon
+            choose 2 Mokepon
         </h2>
     </div>
     <div class="mokepon-selection-multiplayer">
 
         <button id="beedrill-btn-multiplayer" class="mokepon-selection-button-multiplayer pixel-corners">
             <p class="electric-text-multiplayer">electric</p>
-            <img class="beedrill-btn-image" src="components/menu-sprites/menu-beedrill.png" alt="beedrill">
+            <img class="beedrill-btn-image-multiplayer" src="components/menu-sprites/menu-beedrill.png" alt="beedrill">
         </button>
 
         <button id="bulbasaur-btn-multiplayer" class="mokepon-selection-button-multiplayer pixel-corners">
             <p class="water-text-multiplayer">water</p>
-            <img class="bulbasaur-btn-image" src="components/menu-sprites/menu-bulbasaur.png" alt="bulbasaur">
+            <img class="bulbasaur-btn-image-multiplayer" src="components/menu-sprites/menu-bulbasaur.png" alt="bulbasaur">
         </button>
 
         <button id="caterpie-btn-multiplayer" class="mokepon-selection-button-multiplayer pixel-corners">
             <p class="grass-text-multiplayer">grass</p>
-            <img class="caterpie-btn-image" src="components/menu-sprites/menu-caterpie.png" alt="caterpie">
+            <img class="caterpie-btn-image-multiplayer" src="components/menu-sprites/menu-caterpie.png" alt="caterpie">
         </button>
 
         <button id="charizard-btn-multiplayer" class="mokepon-selection-button-multiplayer pixel-corners">
             <p class="fire-text-multiplayer">fire</p>
-            <img class="charizard-btn-image" src="components/menu-sprites/menu-charizard.png" alt="charizard">
+            <img class="charizard-btn-image-multiplayer" src="components/menu-sprites/menu-charizard.png" alt="charizard">
         </button>
 
         <button id="pikachu-btn-multiplayer" class="mokepon-selection-button-multiplayer pixel-corners">
             <p class="electric-text-multiplayer">electric</p>
-            <img class="pikachu-btn-image" src="components/menu-sprites/menu-pikachu.png" alt="pikachu">
+            <img class="pikachu-btn-image-multiplayer" src="components/menu-sprites/menu-pikachu.png" alt="pikachu">
         </button>
 
         <button id="wartortle-btn-multiplayer" class="mokepon-selection-button-multiplayer pixel-corners">
             <p class="water-text-multiplayer">water</p>
-            <img class="wartortle-btn-image" src="components/menu-sprites/menu-wartortle.png" alt="wartortle">
+            <img class="wartortle-btn-image-multiplayer" src="components/menu-sprites/menu-wartortle.png" alt="wartortle">
         </button>
 
         <button id="kricketune-btn-multiplayer" class="mokepon-selection-button-multiplayer pixel-corners">
             <p class="grass-text-multiplayer">grass</p>
-            <img class="kricketune-btn-image" src="components/menu-sprites/menu-kricketune.png" alt="kricketune">
+            <img class="kricketune-btn-image-multiplayer" src="components/menu-sprites/menu-kricketune.png" alt="kricketune">
         </button>
 
 
         <button id="rapidash-btn-multiplayer" class="mokepon-selection-button-multiplayer pixel-corners">
             <p class="fire-text-multiplayer">fire</p>
-            <img class="rapidash-btn-image" src="components/menu-sprites/menu-rapidash.png" alt="rapidash">
+            <img class="rapidash-btn-image-multiplayer" src="components/menu-sprites/menu-rapidash.png" alt="rapidash">
         </button>
 
     </div>
@@ -245,9 +271,6 @@
     <h1 class="end-menu-title">
         End Menu text
     </h1>
-    <button id="rematch-btn" class="end-menu-button pixel-corners">
-        <p>Rematch!</p>
-    </button>
     <button id="main-menu-btn" class="end-menu-button pixel-corners">
         <p>Main Menu</p>
     </button>

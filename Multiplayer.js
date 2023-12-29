@@ -252,6 +252,7 @@ function forceplayerSwap() {
 // AI GAME LOGIC ///////////////////////////////////////////////////
 // AI attack selection function
 function AIAttackSelectionM() {
+    randomAiSwap()
     if (AI_currentMokepon.hp < 0) {
         autoAiSwap()
     } else if (!isPlayerTurnM && (playerHPM > 0 && ai_HPM > 0) && currentMokepon != undefined) {
@@ -369,6 +370,62 @@ function autoAiSwap() {
         aiSelectedImage.classList.add('oponent');
         aiSelectedImage.style.display = 'flex';
         isPlayerTurnM = true;
+    }
+}
+
+function randomAiSwap() {
+    let randomDecision = Math.floor(Math.random() * 4) + 1;
+    if (AI_currentMokepon.hp < 15) {
+        randomDecision = 1
+    }
+    console.log(randomDecision)
+    if (randomDecision == 1) {
+        let aiSelectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
+        if ((AI_currentMokepon == AI_selectedMokepons[0])
+            && (AI_currentMokepon.hp > 0 && AI_selectedMokepons[1].hp > 0)) {
+
+            let newContextInfoText = `Your oponents ${AI_currentMokepon.name} has been called back! 
+        Your oponent calls in ${AI_selectedMokepons[1].name} to the fight!`;
+            contextInfoElement.textContent = '';
+            const characters = newContextInfoText.split('');
+            for (let i = 0; i < characters.length; i++) {
+                setTimeout(() => {
+                    contextInfoElement.textContent += characters[i];
+                }, i * 25);
+            }
+            aiSelectedImage.classList.remove('oponent');
+            aiSelectedImage.style.display = 'none';
+            AI_currentMokepon = AI_selectedMokepons[1]
+            AI_DOMHPMupdate.textContent = AI_currentMokepon.hp; // update health
+            aiMokeponElementM.textContent = AI_currentMokepon.name; // update name
+            ai_HP_beforeM = AI_currentMokepon.hp;
+            aiSelectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
+            aiSelectedImage.classList.add('oponent');
+            aiSelectedImage.style.display = 'flex';
+            isPlayerTurnM = true;
+        } else if ((AI_currentMokepon == AI_selectedMokepons[1])
+            && (AI_currentMokepon.hp > 0 && AI_selectedMokepons[0].hp > 0)) {
+
+            let newContextInfoText = `Your oponents ${AI_currentMokepon.name} has been called back! 
+        Your oponent calls in ${AI_selectedMokepons[0].name} to the fight!`;
+            contextInfoElement.textContent = '';
+            const characters = newContextInfoText.split('');
+            for (let i = 0; i < characters.length; i++) {
+                setTimeout(() => {
+                    contextInfoElement.textContent += characters[i];
+                }, i * 25);
+            }
+            aiSelectedImage.classList.remove('oponent');
+            aiSelectedImage.style.display = 'none';
+            AI_currentMokepon = AI_selectedMokepons[0]
+            AI_DOMHPMupdate.textContent = AI_currentMokepon.hp; // update health
+            aiMokeponElementM.textContent = AI_currentMokepon.name; // update name
+            ai_HP_beforeM = AI_currentMokepon.hp;
+            aiSelectedImage = document.querySelector(`img[src="components/sprites/${AI_currentMokepon.name}.gif"]`);
+            aiSelectedImage.classList.add('oponent');
+            aiSelectedImage.style.display = 'flex';
+            isPlayerTurnM = true;
+        }
     }
 }
 

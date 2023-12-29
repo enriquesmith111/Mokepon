@@ -15,6 +15,10 @@ const secondMenuMultiplayer = document.querySelector('.second-menu-multiplayer')
 const backButtonMultiplayer = document.querySelector('.back-menu-button-multiplayer');
 const nextButtonMultiplayer = document.querySelector('.next-menu-button-multiplayer');
 
+// INFO FOR GEEKS MENU
+const infoButton = document.getElementById('info-button')
+const infoForGeeks = document.querySelector('.info-for-geeks')
+
 // END GAME MENU ELEEMNTS
 const reloadButton = document.getElementById('main-menu-btn');
 
@@ -142,13 +146,23 @@ mokeponButtonsMultiplayer.forEach((button) => {
 });
 
 backButtonMultiplayer.addEventListener('click', () => {
-    firstMenu.style.display = 'flex'; // Correct the spelling of "flex"
+    firstMenu.style.display = 'flex';
     secondMenuMultiplayer.style.display = 'none';
-    selectedButtons.length = 0; // Initialize the selectedButtons array
+    selectedButtons.length = 0; // reset the selectedButtons array
 });
+
+
+// INFO FOR GEEKS
+infoButton.addEventListener('click', () => {
+    console.log('clicked')
+    firstMenu.style.display = 'none';
+    infoForGeeks.style.display = 'flex'
+});
+
+
 
 
 // END MENU BUTTONS
 reloadButton.addEventListener('click', () => {
     window.location.reload();
-})
+});

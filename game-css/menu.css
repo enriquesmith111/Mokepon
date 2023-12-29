@@ -38,6 +38,53 @@
     transform: scale(0.9);
 }
 
+
+.info-for-geeks {
+    display: none;  /* toggle this on and off when selecting through menus */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 900px;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    border-radius: 2%;
+}   @media screen and (max-height: 430px) {
+        .info-for-geeks {
+            top: 43%;
+            left: 49.5%;
+            height: 350px;
+            width: 800px;
+        }
+}
+
+.game-rules {
+    display: flex;
+    align-items: center;
+}
+
+.project-description {
+    overflow: scroll;
+    margin: -30px 20px -10px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+} 
+
+.project-description h3 {
+    margin: 20px;
+}
+
+.project-description p {
+    margin: 5px;
+}
+
+
 /* second menu for singleplayer with mokepon selection, back and next buttons */
 
 .second-menu {
@@ -421,7 +468,7 @@
     background-color: rgba(255, 0, 0, 0.703);
 }   @media screen and (max-height: 430px) {
         .fire-text-multiplayer {
-            margin-top: 0px;
+            margin-top: 8px;
         }
 }
 
@@ -430,7 +477,7 @@
     scale: 2;
 }   @media screen and (max-height: 430px) {
         .charizard-btn-image-multiplayer {
-            margin-top: -15px;
+            margin-top: -7px;
             scale: 1.2;
         }
 }
@@ -440,7 +487,7 @@
     scale: 2;
 }   @media screen and (max-height: 430px) {
         .rapidash-btn-image-multiplayer {
-            margin-top: -15px;
+            margin-top: -8px;
             scale: 1.5;
         }
 }

@@ -376,7 +376,8 @@ function autoAiSwap() {
 function randomAiSwap() {
     let randomDecision = Math.floor(Math.random() * 4) + 1;
     if (AI_currentMokepon.hp < 15) {
-        randomDecision = 1
+        randomDecision = Math.floor(Math.random() * 2) + 1;
+
     }
     console.log(randomDecision)
     if (randomDecision == 1) {

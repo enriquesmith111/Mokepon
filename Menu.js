@@ -1,4 +1,7 @@
 "use strict";
+
+// GAME MUSIC
+let myAudio = document.querySelector('#audio')
 // SINGLE PLAYER MENU ELEMENTS AND GAME INFO
 const singlePlayerButton = document.getElementById('singleplayer-btn');
 const multiplayerButton = document.getElementById('multiplayer-btn');

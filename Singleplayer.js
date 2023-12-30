@@ -9,6 +9,8 @@ const contextInfoElement = document.querySelector('.context-info');
 const playerMokeponElement = document.querySelector('.you-status h2');
 
 nextMenuButton.addEventListener('click', () => {
+    myAudio.loop = true;
+    myAudio.play()
     const selectedImage = document.querySelector(`img[src="components/sprites/${selectedMokepon.name}-back.gif"]`);
     selectedImage.classList.add('you');
     selectedImage.style.display = 'flex';

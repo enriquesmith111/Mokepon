@@ -12,6 +12,8 @@ let AI_currentMokepon = undefined;
 const playerMokeponElementM = document.querySelector('.you-status h2');
 
 nextButtonMultiplayer.addEventListener('click', () => {
+    myAudio.loop = true;
+    myAudio.play()
     const selectedImage = document.querySelector(`img[src="components/sprites/${currentMokepon.name}-back.gif"]`);
     currentMokepon = selectedMokepons[0]; // first chosen Mokepon becomes current 
     SwapMokeponBtnM.style.display = 'flex'; // show swap btn in multiplayer mode

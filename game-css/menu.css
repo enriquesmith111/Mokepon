@@ -63,9 +63,43 @@
         }
 }
 
-.game-rules {
+.info-sprite {
+    display: flex; 
+    position: relative; 
+    left: -30%; 
+    top: 5%;
+}   @media screen and (max-height: 430px) {
+    .info-sprite {
+        scale: 0.8;
+        left: -33%;
+        top: 2%;
+    }
+}
+
+.info-title {
+    margin-top: -50px;
     display: flex;
     align-items: center;
+}   @media screen and (max-height: 430px) {
+    .info-sprite {
+        margin-top: 20px;
+    }
+}
+
+.back-menu-button-info {
+    top: -16%;
+    position: relative;
+    left: 33%;
+    height: 40px;
+    width: 150px;
+}
+
+.back-menu-button-info:hover {
+    background-color: rgb(187, 186, 186);
+}
+
+.back-menu-button-info:active {
+    transform: scale(0.9);
 }
 
 .project-description {

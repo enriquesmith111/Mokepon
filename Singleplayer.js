@@ -59,10 +59,10 @@ document.querySelectorAll('.mokepon-selection-button').forEach((button) => {
 const aiMokeponElement = document.querySelector('.oponent-status h2');
 
 function AI_computerSelectMokepon() {
-    const mokeponNames = Object.keys(mokepons); // Extract an array of Mokepon names
+    const mokeponNames = Object.keys(AI_mokepons); // Extract an array of Mokepon names
     const randomIndex = Math.floor(Math.random() * mokeponNames.length); // Generate a random index in range of Mokepon names
     const selectedMokeponName = mokeponNames[randomIndex]; // Retrieve corresponding Mokepon name and object
-    const ai_selectedMokepon = mokepons[selectedMokeponName];
+    const ai_selectedMokepon = AI_mokepons[selectedMokeponName];
     AI_selectedMokepon = ai_selectedMokepon; // Store AI selected Mokepon object
 
     // Update the AI's Mokepon sprite display and info

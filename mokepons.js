@@ -71,10 +71,10 @@ const mokepons = {
         type: 'electric',
         hp: 100,
         attacks: [
-            { name: 'Electric Jab', type: 'electric', color: 'khaki', basePower: 10 },
-            { name: 'Twister', type: 'normal', color: 'white', basePower: 8 },
-            { name: 'U-turn', type: 'grass', color: 'mediumseagreen', basePower: 10 },
-            { name: 'E-Scissor', type: 'electric', color: 'khaki', basePower: 8 }
+            { name: 'Bolt Strike', type: 'electric', color: 'khaki', basePower: 10 },
+            { name: 'Punch', type: 'normal', color: 'white', basePower: 8 },
+            { name: 'Thunder', type: 'electric', color: 'khaki', basePower: 10 },
+            { name: 'Electroball', type: 'electric', color: 'khaki', basePower: 10 }
         ]
     },
     rapidash: {
@@ -84,10 +84,10 @@ const mokepons = {
         type: 'fire',
         hp: 100,
         attacks: [
-            { name: 'Flamethrower', type: 'fire', color: 'crimson', basePower: 10 },
-            { name: 'Air Slash', type: 'normal', color: 'white', basePower: 8 },
-            { name: 'Fire Whip', type: 'fire', color: 'crimson', basePower: 10 },
-            { name: 'Punch', type: 'normal', color: 'white', basePower: 8 }
+            { name: 'Fire Blast', type: 'fire', color: 'crimson', basePower: 9 },
+            { name: 'Bite', type: 'normal', color: 'white', basePower: 8 },
+            { name: 'Blaze Kick', type: 'fire', color: 'crimson', basePower: 11 },
+            { name: 'Slam', type: 'normal', color: 'white', basePower: 8 }
         ]
     },
     wartortle: {
@@ -97,9 +97,9 @@ const mokepons = {
         type: 'water',
         hp: 100,
         attacks: [
-            { name: 'Water Whip', type: 'water', color: 'darkturquoise', basePower: 10 },
+            { name: 'Hydro Canon', type: 'water', color: 'darkturquoise', basePower: 11 },
             { name: 'Growl', type: 'normal', color: 'white', basePower: 8 },
-            { name: 'Razor Water', type: 'water', color: 'darkturquoise', basePower: 10 },
+            { name: 'Rain Dance', type: 'water', color: 'darkturquoise', basePower: 9 },
             { name: 'Aqua Powder', type: 'water', color: 'darkturquoise', basePower: 10 }
         ]
     }

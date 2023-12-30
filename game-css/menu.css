@@ -83,6 +83,8 @@
 }   @media screen and (max-height: 430px) {
     .info-sprite {
         margin-top: 20px;
+        display: flex;
+        align-items: center;
     }
 }
 

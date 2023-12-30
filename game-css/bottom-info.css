@@ -22,8 +22,8 @@
         transition: opacity 0.5s ease-in-out;
         background-color: rgba(255, 235, 205, 0.7); /* Set opacity to 0.5 for screens less than 430px */
         height: 95px;
-        top: 74%;
-        width: 82%;
+        top: 70.5%;
+        width: 74%;
     }
 }
 

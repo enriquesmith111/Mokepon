@@ -11,11 +11,6 @@ body {
     overflow: hidden;
     user-select: none; /* Disable zooming */
     touch-action: none;
-}   @media screen and (max-height: 430px) {
-    .body {
-        user-select: none; /* Disable zooming */
-        touch-action: none;
-    }
 }
 
 .game-background-image {
@@ -34,8 +29,8 @@ body {
     border-radius: 2%;
 }   @media screen and (max-height: 430px) {
     .game-background-image {
-        width: 820px;
-        height: 380px;
+        width: 738px;
+        height: 342px;
     }
 }
 

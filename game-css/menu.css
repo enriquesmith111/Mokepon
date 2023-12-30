@@ -17,9 +17,9 @@
     border-radius: 2%;
 }   @media screen and (max-height: 430px) {
         .menu {
-            top: 43%;
-            height: 350px;
-            width: 280px;
+            top: 56%;
+            height: 315px;
+            width: 252px;
         }
 }
 
@@ -58,8 +58,8 @@
         .info-for-geeks {
             top: 43%;
             left: 49.5%;
-            height: 350px;
-            width: 800px;
+            height: 315px;
+            width: 720px;
         }
 }
 
@@ -140,9 +140,9 @@
     border-radius: 2%;
 }   @media screen and (max-height: 430px) {
         .second-menu {
-            top: 43%;
-            height: 350px;
-            width: 500px;
+            top: 56%;
+            height: 315px;
+            width: 450px;
         }
 }
 
@@ -287,8 +287,8 @@
     transition: transform 0.2s ease-in-out;
 }   @media screen and (max-height: 430px) {
     .mokepon-selection-button {
-        width: 110px;
-        height: 125px;
+        width: 100px;
+        height: 110px;
     }
 }
 
@@ -357,9 +357,9 @@
     border-radius: 2%;
 }      @media screen and (max-height: 430px) {
     .end-menu {
-        top: 43%;
-        height: 350px;
-        width: 280px;
+        top: 56%;
+        height: 315px;
+        width: 252px;
     }
 }
 
@@ -397,9 +397,9 @@
     border-radius: 2%;
 }   @media screen and (max-height: 430px) {
         .second-menu-multiplayer {
-            top: 43%;
-            height: 350px;
-            width: 500px;
+            top: 56%;
+            height: 315px;
+            width: 450px;
         }
 }
 
@@ -544,8 +544,8 @@
     transition: transform 0.2s ease-in-out;
 }   @media screen and (max-height: 430px) {
     .mokepon-selection-button-multiplayer {
-        width: 110px;
-        height: 125px;
+        width: 100px;
+        height: 110px;
     }
 }
 

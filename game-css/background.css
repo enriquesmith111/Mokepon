@@ -5,6 +5,7 @@ html {
 }
 
 body {
+    display: flex;
     background-color: rgb(37, 37, 96);
     height: 100vh;
     width: 100vw;
@@ -39,6 +40,26 @@ body {
         height: 342px;
     }
 }
+
+.game-window {
+    position: fixed; /* Set position to 'absolute' */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the image using translate */
+    height: 600px;
+    width: 1000px;
+}    @media screen and (max-height: 430px) {
+    .game-window {
+        position: fixed; /* Set position to 'absolute' */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the image using translate */
+        width: 738px;
+        height: 342px;
+    }
+}
+
+
 
 * {
     /* border: solid red 1px; */

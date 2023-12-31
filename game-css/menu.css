@@ -2,10 +2,10 @@
 .menu {
     display: flex;
     /* toggle display flex to none and back on and off when selecting through menus */
-    position: relative;
+    position: fixed; /* Set position to 'absolute' */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /* Center the image using translate */
     height: 450px;
     width: 300px;
     flex-direction: column;
@@ -17,13 +17,19 @@
     border-radius: 2%;
 }   @media screen and (min-height: 420px) and (max-height: 440px) {
         .menu {
-            top: 42%;
+            position: fixed; /* Set position to 'absolute' */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the image using translate */
             height: 315px;
             width: 252px;
         }
 }    @media screen and (max-height: 420px) {
     .menu {
-        top: 42%;
+        position: fixed; /* Set position to 'absolute' */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the image using translate */
         height: 315px;
         width: 252px;
     }

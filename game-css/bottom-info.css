@@ -1,5 +1,5 @@
 .bottom-info {
-    z-index: 1;
+    z-index: 2;
     /* toggle display flex to none and back on and off when selecting through menus */
     display: flex;
     opacity: 0;

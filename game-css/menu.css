@@ -68,15 +68,17 @@
     border-radius: 2%;
 }   @media screen and (min-height: 420px) and (max-height: 440px) {
         .info-for-geeks {
-            top: 42%;
-            left: 49.5%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the image using translate */
             height: 315px;
             width: 720px;
         }
 }   @media screen and (max-height: 420px) {
     .info-for-geeks {
-        top: 42%;
-        left: 49.5%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the image using translate */
         height: 315px;
         width: 720px; 
     }
@@ -90,8 +92,9 @@
 }   @media screen and (max-height: 430px) {
     .info-sprite {
         scale: 0.8;
-        left: -33%;
-        top: 2%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the image using translate */
     }
 }
 
@@ -159,13 +162,17 @@
     border-radius: 2%;
 }   @media screen and (min-height: 421px) and (max-height: 440px) {
         .second-menu {
-            top: 42%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the image using translate */
             height: 315px;
             width: 450px;
         }
 }   @media screen and (max-height: 420px) {
     .second-menu {
-        top: 42%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the image using translate */
         height: 315px;
         width: 450px;
     }
@@ -382,13 +389,17 @@
     border-radius: 2%;
 }   @media screen and (min-height: 420px) and (max-height: 440px) {
     .end-menu {
-        top: 42%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the image using translate */
         height: 315px;
         width: 252px;
     }
 }   @media screen and (max-height: 420px) {
     .end-menu {
-        top: 42%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the image using translate */
         height: 315px;
         width: 252px;
     }
@@ -428,13 +439,17 @@
     border-radius: 2%;
 }   @media screen and (min-height: 420px) and (max-height: 440px) {
         .second-menu-multiplayer {
-            top: 42%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the image using translate */
             height: 315px;
             width: 450px;
         }
 }   @media screen and (max-height: 420px) {
     .second-menu-multiplayer {
-        top: 42%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the image using translate */
         height: 315px;
         width: 450px;
     }

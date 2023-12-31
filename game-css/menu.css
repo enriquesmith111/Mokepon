@@ -92,9 +92,6 @@
 }   @media screen and (max-height: 430px) {
     .info-sprite {
         scale: 0.8;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); /* Center the image using translate */
     }
 }
 

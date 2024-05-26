@@ -1,7 +1,7 @@
 "use strict";
 
 // GAME MUSIC
-let myAudio = document.querySelector('#audio')
+let myAudio = document.querySelector('#audio');
 // SINGLE PLAYER MENU ELEMENTS AND GAME INFO
 const singlePlayerButton = document.getElementById('singleplayer-btn');
 const multiplayerButton = document.getElementById('multiplayer-btn');
@@ -176,3 +176,15 @@ backButtonInfo.addEventListener('click', () => {
 reloadButton.addEventListener('click', () => {
     window.location.reload();
 });
+
+// sound music
+let on_off = document.querySelector('i');
+
+on_off.onclick = function () {
+    myAudio.paused ? myAudio.play() : music_stop();
+}
+
+function music_stop() {
+    myAudio.pause();
+    myAudio.currentTime = 0;
+}

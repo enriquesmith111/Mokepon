@@ -139,6 +139,25 @@
     margin: 5px;
 }
 
+.sound-button {
+    position: absolute;
+    top: 8%;
+    right: 88%;
+    z-index: 5;
+}
+
+i {
+    font-size: 30px;
+}
+
+i:hover {
+    color: grey;
+}
+
+i:active{
+    color: grey;
+}
+
 
 /* second menu for singleplayer with mokepon selection, back and next buttons */
 

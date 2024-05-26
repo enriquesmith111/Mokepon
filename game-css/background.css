@@ -81,6 +81,7 @@ button {
 * {
     /* border: solid red 1px; */
     font-family: 'Pixelify Sans', sans-serif;
+    border: red 1px solid;
 }
 
 button {

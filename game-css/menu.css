@@ -141,7 +141,7 @@
 
 .sound-button {
     position: absolute;
-    top: 8%;
+    top: 6%;
     right: 80%;
     z-index: 5;
 }  @media screen and (max-height: 430px) {
@@ -151,7 +151,7 @@
     }
 }
 
-.sound-button button {
+.sound-btn {
     background-color: transparent;
 }
 
